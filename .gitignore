@@ -1,0 +1,18 @@
+.DS_Store
+*.exe
+.*
+!/.gitignore
+build/
+**/cmake-build-debug/
+CMakeSettings.json
+
+# Intellij
+*.ipr
+*.iml
+*.iws
+**/.idea/
+
+# others
+*.rar
+*.zip
+*.pdf
