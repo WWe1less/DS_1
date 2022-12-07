@@ -1,4 +1,4 @@
-#include "SeqList.h"	// Ë³Ğò±íÀà
+#include "SeqList.h"	// é¡ºåºè¡¨ç±»
 
 int main(void)
 {
@@ -9,29 +9,29 @@ int main(void)
     
 	while (c != '0')
 	{
-        cout << endl << "1. Éú³ÉÏßĞÔ±í.";
-        cout << endl << "2. ÏÔÊ¾ÏßĞÔ±í.";
-        cout << endl << "3. È¡Ö¸¶¨ÔªËØ.";
-        cout << endl << "4. ÉèÖÃÔªËØÖµ.";
-        cout << endl << "5. É¾³ıÔªËØ.";
-        cout << endl << "6. ²åÈëÔªËØ.";
-        cout << endl << "7. ÔªËØ¶¨Î».";
-        cout << endl << "8. ÇóÏßĞÔ±í³¤¶È.";
-        cout << endl << "9. ÄæÖÃ.";
-        cout << endl << "O. É¾³ıÖØ¸´ÔªËØ.";
-		cout << endl << "0. ÍË³ö";
-		cout << endl << "Ñ¡Ôñ¹¦ÄÜ(0~9):";
+        cout << endl << "1. ç”Ÿæˆçº¿æ€§è¡¨.";
+        cout << endl << "2. æ˜¾ç¤ºçº¿æ€§è¡¨.";
+        cout << endl << "3. å–æŒ‡å®šå…ƒç´ .";
+        cout << endl << "4. è®¾ç½®å…ƒç´ å€¼.";
+        cout << endl << "5. åˆ é™¤å…ƒç´ .";
+        cout << endl << "6. æ’å…¥å…ƒç´ .";
+        cout << endl << "7. å…ƒç´ å®šä½.";
+        cout << endl << "8. æ±‚çº¿æ€§è¡¨é•¿åº¦.";
+        cout << endl << "9. é€†ç½®.";
+        cout << endl << "O. åˆ é™¤é‡å¤å…ƒç´ .";
+		cout << endl << "0. é€€å‡º";
+		cout << endl << "é€‰æ‹©åŠŸèƒ½(0~9):";
 		cin >> c;
 		switch (c) 	{
 			case '1':
 			    la.Clear();
 			    sta = SUCCESS;
-				cout << endl << "ÊäÈëe(e = 0Ê±ÍË³ö):";
+				cout << endl << "è¾“å…¥e(e = 0æ—¶é€€å‡º):";
 				cin >> e;
 				while (e != 0 && sta != OVER_FLOW)	{
 					sta = la.InsertElem(e);
 					if (sta == OVER_FLOW) 
-						cout << "ÏßĞÔ±íÒÑÂú." << endl;
+						cout << "çº¿æ€§è¡¨å·²æ»¡." << endl;
 					else
 						cin >> e;
 				}
@@ -40,72 +40,72 @@ int main(void)
 			    la.Traverse(Write<int>);
 				break;
 			case '3':
-			    cout << endl << "ÊäÈëÔªËØÎ»ÖÃ:";
+			    cout << endl << "è¾“å…¥å…ƒç´ ä½ç½®:";
 			    cin >> i;
 			    if (la.GetElem(i, e) == NOT_PRESENT) 
-					cout << "ÔªËØ²»´æ´¢." << endl;
+					cout << "å…ƒç´ ä¸å­˜å‚¨." << endl;
 				else
-					cout << "ÔªËØ:" << e << endl;
+					cout << "å…ƒç´ :" << e << endl;
 			    break;
 			case '4':
-			    cout << endl << "ÊäÈëÎ»ÖÃ:";
+			    cout << endl << "è¾“å…¥ä½ç½®:";
 			    cin >> i;
-			    cout << endl << "ÊäÈëÔªËØÖµ:";
+			    cout << endl << "è¾“å…¥å…ƒç´ å€¼:";
 			    cin >> e;
 				if (la.SetElem(i, e) == RANGE_ERROR)
-					cout << "Î»ÖÃ·¶Î§´í." << endl;
+					cout << "ä½ç½®èŒƒå›´é”™." << endl;
 				else
-					cout << "ÉèÖÃ³É¹¦." << endl;
+					cout << "è®¾ç½®æˆåŠŸ." << endl;
 			    break;
 			case '5':
-			    cout << endl << "ÊäÈëÎ»ÖÃ:";
+			    cout << endl << "è¾“å…¥ä½ç½®:";
 			    cin >> i;
 			    if (la.DeleteElem(i, e) == RANGE_ERROR) 
-					cout << "Î»ÖÃ·¶Î§´í." << endl;
+					cout << "ä½ç½®èŒƒå›´é”™." << endl;
 				else
-					cout << "±»É¾³ıÔªËØÖµ:" << e << endl;
+					cout << "è¢«åˆ é™¤å…ƒç´ å€¼:" << e << endl;
 			    break;
 			case '6':
-			    cout << endl << "ÊäÈëÎ»ÖÃ:";
+			    cout << endl << "è¾“å…¥ä½ç½®:";
 			    cin >> i;
-			    cout << endl << "ÊäÈëÔªËØÖµ:";
+			    cout << endl << "è¾“å…¥å…ƒç´ å€¼:";
 			    cin >> e;
 			    sta = la.InsertElem(i, e);
 			    
 			    if (sta == RANGE_ERROR) 
-					cout << "Î»ÖÃ·¶Î§´í." << endl;
+					cout << "ä½ç½®èŒƒå›´é”™." << endl;
 				else if (sta == OVER_FLOW) 
-					cout << "ÏßĞÔ±íÒÑÂú." << endl;
+					cout << "çº¿æ€§è¡¨å·²æ»¡." << endl;
 				else
-					cout << "²åÈë³É¹¦." << endl;	
+					cout << "æ’å…¥æˆåŠŸ." << endl;	
 			    break;
 			case '7':
-			    cout << endl << "ÊäÈëÔªËØÖµ:";
+			    cout << endl << "è¾“å…¥å…ƒç´ å€¼:";
 			    cin >> e;
 			    i = la.LocateElem(e); 
 			    if (i != 0) 
-					cout << "ÔªËØ" << e << "µÄĞòºÅÎª£º" << i << endl;
+					cout << "å…ƒç´ " << e << "çš„åºå·ä¸ºï¼š" << i << endl;
 				else
-					cout << "ÔªËØ" << e << "²»´æÔÚ¡£"  << endl;
+					cout << "å…ƒç´ " << e << "ä¸å­˜åœ¨ã€‚"  << endl;
 			    break;
 			case '8':
-			    cout << endl << "ÏßĞÔ±íµÄ³¤¶ÈÎª:" << la.GetLength() << endl; 
+			    cout << endl << "çº¿æ€§è¡¨çš„é•¿åº¦ä¸º:" << la.GetLength() << endl; 
 			    break;
             case '9':
                 la.Reverse();
-                cout << endl << "ÏßĞÔ±íÒÑÄæÖÃ" << endl;
+                cout << endl << "çº¿æ€§è¡¨å·²é€†ç½®" << endl;
                 la.Traverse(Write<int>);
                 break;
             case 'o':
                 la.Overkill();
-                cout << endl << "ÏßĞÔ±íÒÑÉ¾³ıÖØ¸´ÔªËØ" << endl;
+                cout << endl << "çº¿æ€§è¡¨å·²åˆ é™¤é‡å¤å…ƒç´ " << endl;
                 la.Traverse(Write<int>);
                 break;
        	}
 	}
 
-   	system("PAUSE");        		// µ÷ÓÃ¿âº¯Êısystem()£¬ÔİÍ£³ÌĞòÔËĞĞ 
-   	return 0;               		// ·µ»Ø²Ù×÷ÏµÍ³
+   	system("PAUSE");        		// è°ƒç”¨åº“å‡½æ•°system()ï¼Œæš‚åœç¨‹åºè¿è¡Œ 
+   	return 0;               		// è¿”å›æ“ä½œç³»ç»Ÿ
 }
 
 

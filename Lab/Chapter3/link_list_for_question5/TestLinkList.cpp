@@ -1,4 +1,4 @@
-#include "LinkList.h"		// µ¥Á´±íÀà
+#include "LinkList.h"		// å•é“¾è¡¨ç±»
 int main(void)
 {
 	char c = '*';
@@ -9,23 +9,23 @@ int main(void)
 
     while (c != '0')
 	{
-        cout << endl << "1. Éú³Éµ¥Á´±í.";
-        cout << endl << "2. ÏÔÊ¾µ¥Á´±í.";
-        cout << endl << "3. È¡Ö¸¶¨Î»ÖÃµÄÔªËØ.";
-        cout << endl << "4. ÉèÖÃÔªËØÖµ.";
-        cout << endl << "5. É¾³ıÔªËØ.";
-        cout << endl << "6. ²åÈëÔªËØ.";
-		cout << endl << "7. ÔªËØ¶¨Î»";
-		cout << endl << "8. È¡µ¥Á´±í³¤¶È";
-        cout << endl << "9. ÄæÖÃ";
-  		cout << endl << "0. ÍË³ö";
-          cout<<endl<<"M.¹é²¢";
-		cout << endl << "Ñ¡Ôñ¹¦ÄÜ(0~9):";
+        cout << endl << "1. ç”Ÿæˆå•é“¾è¡¨.";
+        cout << endl << "2. æ˜¾ç¤ºå•é“¾è¡¨.";
+        cout << endl << "3. å–æŒ‡å®šä½ç½®çš„å…ƒç´ .";
+        cout << endl << "4. è®¾ç½®å…ƒç´ å€¼.";
+        cout << endl << "5. åˆ é™¤å…ƒç´ .";
+        cout << endl << "6. æ’å…¥å…ƒç´ .";
+		cout << endl << "7. å…ƒç´ å®šä½";
+		cout << endl << "8. å–å•é“¾è¡¨é•¿åº¦";
+        cout << endl << "9. é€†ç½®";
+  		cout << endl << "0. é€€å‡º";
+          cout<<endl<<"M.å½’å¹¶";
+		cout << endl << "é€‰æ‹©åŠŸèƒ½(0~9):";
 		cin >> c;
 		switch (c) 
 		{	case '1':
 			    la.Clear();
-				cout << endl << "ÊäÈëe(e = 0Ê±ÍË³ö):";
+				cout << endl << "è¾“å…¥e(e = 0æ—¶é€€å‡º):";
 				cin >> e;
 				while (e != 0)   {
 					la.InsertElem(e);
@@ -36,74 +36,74 @@ int main(void)
 			    la.Traverse(Write<double>);
 				break;
 			case '3':
-			    cout << endl << "ÊäÈëÔªËØÎ»ÖÃ:";
+			    cout << endl << "è¾“å…¥å…ƒç´ ä½ç½®:";
 			    cin >> i;
 			    if (la.GetElem(i, e) == RANGE_ERROR) 
-					cout << "ÔªËØ²»´æÔÚ." << endl;
+					cout << "å…ƒç´ ä¸å­˜åœ¨." << endl;
 				else
-					cout << "ÔªËØ:" << e << endl;
+					cout << "å…ƒç´ :" << e << endl;
 			    break;
 			case '4':
-			    cout << endl << "ÊäÈëÎ»ÖÃ:";
+			    cout << endl << "è¾“å…¥ä½ç½®:";
 			    cin >> i;
-			    cout << endl << "ÊäÈëÔªËØÖµ:";
+			    cout << endl << "è¾“å…¥å…ƒç´ å€¼:";
 			    cin >> e;
 				if (la.SetElem(i, e) == RANGE_ERROR)
-					cout << "Î»ÖÃ·¶Î§´í." << endl;
+					cout << "ä½ç½®èŒƒå›´é”™." << endl;
 				else
-					cout << "ÉèÖÃ³É¹¦." << endl;
+					cout << "è®¾ç½®æˆåŠŸ." << endl;
 			    break;
 			case '5':
-			    cout << endl << "ÊäÈëÎ»ÖÃ:";
+			    cout << endl << "è¾“å…¥ä½ç½®:";
 			    cin >> i;
 			    if (la.DeleteElem(i, e) == RANGE_ERROR) 
-					cout << "Î»ÖÃ·¶Î§´í." << endl;
+					cout << "ä½ç½®èŒƒå›´é”™." << endl;
 				else
-					cout << "±»É¾³ıÔªËØÖµ:" << e << endl;
+					cout << "è¢«åˆ é™¤å…ƒç´ å€¼:" << e << endl;
 			    break;
 			case '6':
-			    cout << endl << "ÊäÈëÎ»ÖÃ:";
+			    cout << endl << "è¾“å…¥ä½ç½®:";
 			    cin >> i;
-			    cout << endl << "ÊäÈëÔªËØÖµ:";
+			    cout << endl << "è¾“å…¥å…ƒç´ å€¼:";
 			    cin >> e;
 			    if (la.InsertElem(i, e) == RANGE_ERROR) 
-					cout << "Î»ÖÃ·¶Î§´í." << endl;
+					cout << "ä½ç½®èŒƒå›´é”™." << endl;
 				else
-					cout << "³É¹¦:" << e << endl;
+					cout << "æˆåŠŸ:" << e << endl;
 			    break;
 			case '7':
-			    cout << endl << "ÊäÈëÔªËØµÄÖµ:";
+			    cout << endl << "è¾“å…¥å…ƒç´ çš„å€¼:";
 			    cin >> e;
 			    i = la.LocateElem(e);
 			    if (i == 0) 
-					cout << "ÔªËØ²»´æÔÚ." << endl;
+					cout << "å…ƒç´ ä¸å­˜åœ¨." << endl;
 				else
-					cout << "ÔªËØ" << e << "µÄĞòºÅÎª£º" << i << endl;
+					cout << "å…ƒç´ " << e << "çš„åºå·ä¸ºï¼š" << i << endl;
 			    break;
 			case '8':
-			    cout << endl << "µ¥Á´±íµÄ³¤¶ÈÎª:" << la.GetLength()  << endl;
+			    cout << endl << "å•é“¾è¡¨çš„é•¿åº¦ä¸º:" << la.GetLength()  << endl;
 			    break;
             case '9':
                 la.Reverse();
-                cout << endl << "µ¥Á´±íÒÑÄæÖÃ" << endl;
+                cout << endl << "å•é“¾è¡¨å·²é€†ç½®" << endl;
                 la.Traverse(Write<double>);
                 break;
             case 'm':
 
                 lb.Clear();
-                cout << endl << "ÊäÈëe(e = 0Ê±ÍË³ö):";
+                cout << endl << "è¾“å…¥e(e = 0æ—¶é€€å‡º):";
                 cin >> e;
                 while (e != 0)   {
                     lb.InsertElem(e);
                     cin >> e;
                 }
                 la.Merge(lb);
-                cout << endl << "µ¥Á´±íÒÑ¹é²¢" << endl;
+                cout << endl << "å•é“¾è¡¨å·²å½’å¹¶" << endl;
                 la.Traverse(Write<double>);
                 break;
 
         }
 	}
-	system("PAUSE");        // µ÷ÓÃ¿âº¯Êısystem()
-	return 0;               // ·µ»ØÖµ0, ·µ»Ø²Ù×÷ÏµÍ³
+	system("PAUSE");        // è°ƒç”¨åº“å‡½æ•°system()
+	return 0;               // è¿”å›å€¼0, è¿”å›æ“ä½œç³»ç»Ÿ
 }
