@@ -88,7 +88,7 @@ template <class ElemType>
 void LinkList<ElemType>::Clear()
 // 操作结果：清空单链表,删除单链表中所有元素结点 
 {
-    Node<ElemType> *p = head->next;
+    Node<ElemType> *p = head;
 	while (p != NULL) {
 		head->next = p->next;
         delete p; 
@@ -215,10 +215,15 @@ Status LinkList<ElemType>::InsertElem(const ElemType &e)
 {
 	Node<ElemType> *p, *q;
 	q = new Node<ElemType>(e, NULL);    // 生成新结点q
-    assert(q);                          // 申请结点失败，终止程序运行 
-	for (p = head; p->next != NULL; p = p->next) ;	// p指向表尾结点	
-    p->next = q;                        // 在单链表的表尾位置插入新结点 
-	length++;							// 插入成功后，单链表长度加1 
+    assert(q);                          // 申请结点失败，终止程序运行
+    if(head==NULL) {
+        q->next=head;
+        head=q;
+    }else{
+        for (p = head; p->next != NULL; p = p->next) ;	// p指向表尾结点
+        p->next = q;                        // 在单链表的表尾位置插入新结点
+    }
+	length++;							// 插入成功后，单链表长度加1
 	return SUCCESS;
 }
 

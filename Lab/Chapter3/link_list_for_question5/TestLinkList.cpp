@@ -1,5 +1,4 @@
 #include "LinkList.h"		// 单链表类
-
 int main(void)
 {
 	char c = '*';
@@ -22,8 +21,7 @@ int main(void)
 		cout << endl << "选择功能(0~9):";
 		cin >> c;
 		switch (c) 
-		{
-			case '1':
+		{	case '1':
 			    la.Clear();
 				cout << endl << "输入e(e = 0时退出):";
 				cin >> e;
