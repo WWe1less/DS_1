@@ -2,7 +2,8 @@
 int main(void)
 {
 	char c = '*';
-    LinkList<double> la;
+    LinkList<double> la,lb;
+
     double e;
 	int i;
 
@@ -18,6 +19,7 @@ int main(void)
 		cout << endl << "8. 取单链表长度";
         cout << endl << "9. 逆置";
   		cout << endl << "0. 退出";
+          cout<<endl<<"M.归并";
 		cout << endl << "选择功能(0~9):";
 		cin >> c;
 		switch (c) 
@@ -86,7 +88,21 @@ int main(void)
                 cout << endl << "单链表已逆置" << endl;
                 la.Traverse(Write<double>);
                 break;
-       		}
+            case 'm':
+
+                lb.Clear();
+                cout << endl << "输入e(e = 0时退出):";
+                cin >> e;
+                while (e != 0)   {
+                    lb.InsertElem(e);
+                    cin >> e;
+                }
+                la.Merge(lb);
+                cout << endl << "单链表已归并" << endl;
+                la.Traverse(Write<double>);
+                break;
+
+        }
 	}
 	system("PAUSE");        // 调用库函数system()
 	return 0;               // 返回值0, 返回操作系统

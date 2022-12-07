@@ -32,6 +32,7 @@ public:
 	LinkList<ElemType> &operator =(const LinkList<ElemType> &la); // 重载赋值运算
 
     void Reverse();								// 链表结点倒置
+    void Merge(LinkList<ElemType> &lb);
 };
 
 
@@ -275,6 +276,41 @@ void LinkList<ElemType>::Reverse()						// 链表结点倒置
         head->next = p;								// 将卸下的结点插入新链表的首部
     }											// 注意：由于只修改了各结点的next的值，cur_node不变
 }
+
+template <class ElemType>
+void LinkList<ElemType>::Merge(LinkList<ElemType> &lb)
+{
+    Node<ElemType> *pa,*pb,*p,*q;
+    pa=head;pb=lb.head;
+    head=NULL;
+    lb.head=NULL;
+    while (pa != NULL && pb !=NULL)
+    {
+        if (pa->data <= pb->data)
+        {
+            q=pa;
+            pa=pa->next;
+        }
+        else
+        {
+            q=pb;
+            pb=pb->next;
+        }
+        q->next = head;head=q;
+
+    }
+    p = (pa != NULL) ?pa:pb;
+    while (p!=NULL)
+    {
+        q=p;p=p->next;
+        q->next=head;
+        head=q;
+    }
+    length=length + lb.length;
+    lb.length=0;
+}
+
+
 
 #endif
 
