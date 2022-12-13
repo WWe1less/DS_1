@@ -1,4 +1,4 @@
-#include "SeqQueue.h"	// Ñ­»·¶ÓÁÐÀà
+#include "SeqQueue.h"	// å¾ªçŽ¯é˜Ÿåˆ—ç±»
 
 int  main(void)
 {
@@ -7,19 +7,19 @@ int  main(void)
     int x;
     while (c != '0')
 	{
-        cout << endl << "1. Éú³É¶ÓÁÐ.";
-        cout << endl << "2. ÏÔÊ¾¶ÓÁÐ.";
-        cout << endl << "3. Èë¶ÓÁÐ.";
-        cout << endl << "4. ³ö¶ÓÁÐ.";
-        cout << endl << "5. È¡¶ÓÁÐÍ·.";
-		cout << endl << "0. ÍË³ö";
-		cout << endl << "Ñ¡Ôñ¹¦ÄÜ(0~5):";
+        cout << endl << "1. ç”Ÿæˆé˜Ÿåˆ—.";
+        cout << endl << "2. æ˜¾ç¤ºé˜Ÿåˆ—.";
+        cout << endl << "3. å…¥é˜Ÿåˆ—.";
+        cout << endl << "4. å‡ºé˜Ÿåˆ—.";
+        cout << endl << "5. å–é˜Ÿåˆ—å¤´.";
+		cout << endl << "0. é€€å‡º";
+		cout << endl << "é€‰æ‹©åŠŸèƒ½(0~5):";
 		cin >> c;
 		switch (c) 
 		{
 			case '1':
                 qa.Clear();
-				cout << endl << "ÊäÈëe(e = 0Ê±ÍË³ö)";
+				cout << endl << "è¾“å…¥e(e = 0æ—¶é€€å‡º)";
 				cin >> x;
 				while (x != 0)	{
 					qa.EnQueue(x);
@@ -31,20 +31,20 @@ int  main(void)
 			    qa.Traverse(Write<int>);
 				break;
 		   case '3':
-			    cout << endl << "ÊäÈëÔªËØÖµ:";
+			    cout << endl << "è¾“å…¥å…ƒç´ å€¼:";
 			    cin >> x;
 			    if (qa.EnQueue(x) == OVER_FLOW)
-                   cout << endl << "¶ÓÁÐÒÑÂú!";
+                   cout << endl << "é˜Ÿåˆ—å·²æ»¡!";
 			    else
-                   cout << endl << "Èë¶Ó³É¹¦.";
+                   cout << endl << "å…¥é˜ŸæˆåŠŸ.";
 			    break;
            case '4':
 			    qa.DelQueue(x);
-			    cout << endl << "¶ÓÍ·ÔªËØÖµÎª " << x << " ." << endl;
+			    cout << endl << "é˜Ÿå¤´å…ƒç´ å€¼ä¸º " << x << " ." << endl;
 			    break;
            case '5':
 			    qa.GetHead(x);
-			    cout << endl << "¶ÓÍ·ÔªËØÖµÎª " << x << " ." << endl;
+			    cout << endl << "é˜Ÿå¤´å…ƒç´ å€¼ä¸º " << x << " ." << endl;
 			    break;
 		}
 	}
