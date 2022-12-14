@@ -13,8 +13,9 @@ class Stack2Queue{
 protected:
     int front, rear;									 // 队头队尾指针
     int maxSize;										 // 队列容量
-    ElemType *elems;									 // 元素存储空间
-    SeqStack<ElemType> *s1, *s2;
+    //ElemType *elems;									 // 元素存储空间
+    SeqStack<ElemType> *s1, *s2;                        //顺序栈模式
+//    LinkStack<ElemType> *s1, *s2;                     //链式栈模式
 public:
     Stack2Queue(int size = DEFAULT_SIZE);					 // 构造函数
     virtual ~Stack2Queue();								 // 析构函数
@@ -29,8 +30,10 @@ Stack2Queue<ElemType>::Stack2Queue(int size)
 // 操作结果：构造一个容量为size的空队列
 {
     maxSize = size;							// 设置队列容量
-    s1 = new SeqStack<ElemType>(maxSize);   // 分配元素存储空间
-    s2 = new SeqStack<ElemType>(maxSize);   // 分配元素存储空间
+    s1 = new SeqStack<ElemType>(maxSize);   // 分配元素存储空间//顺序栈模式
+    s2 = new SeqStack<ElemType>(maxSize);   // 分配元素存储空间//顺序栈模式
+//    s1 = new LinkStack<ElemType>;   // 分配元素存储空间//链式栈模式
+//    s2 = new LinkStack<ElemType>;   // 分配元素存储空间//链式栈模式
     rear = front = 0;						// 初始化队头与队尾
 }
 template <class ElemType>
@@ -46,6 +49,7 @@ void Stack2Queue<ElemType>::ShowQueue(){
 }
 template<class ElemType>
 Status Stack2Queue<ElemType>::EnQueue(const ElemType &e) {
+    //入队列操作与入栈相同
     return s1->Push(e);
 }
 template<class ElemType>
@@ -72,6 +76,7 @@ Status Stack2Queue<ElemType>::DelQueue(ElemType &e) {
 }
 template<class ElemType>
 bool Stack2Queue<ElemType>::IsEmpty() const{
+    //判空列操作与栈判空相同
     return s1->IsEmpty();
 }
 

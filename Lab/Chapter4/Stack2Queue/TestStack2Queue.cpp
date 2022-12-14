@@ -6,7 +6,7 @@
 int  main(void)
 {
     char c = '1';
-    Stack2Queue<int> qa(10);
+    Stack2Queue<int> qa;
     int x;
     while (c != '0')
     {

@@ -8,9 +8,9 @@ include_directories(link_stack)
 include_directories(seq_stack)
 
 add_executable(Stack2Queue
-#        link_stack/Assistance.h
-#        link_stack/LinkStack.h
-#        link_stack/Node.h
+        link_stack/Assistance.h
+        link_stack/LinkStack.h
+        link_stack/Node.h
 #        link_stack/TestLinkStack.cpp
         seq_stack/Assistance.h
         seq_stack/SeqStack.h
