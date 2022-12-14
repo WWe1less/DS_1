@@ -49,12 +49,24 @@ void Stack2Queue<ElemType>::ShowQueue(){
 }
 template<class ElemType>
 Status Stack2Queue<ElemType>::EnQueue(const ElemType &e) {
-    //入队列操作与入栈相同
-    return s1->Push(e);
+    //判空
+    if(s2->IsEmpty())
+        return s1->Push(e);
+    else if(!s2->IsEmpty()){
+        //将s2元素倒回s1
+        ElemType e_tmp;
+        while(!s2->IsEmpty()){
+            s2->Pop(e_tmp);
+            s1->Push(e_tmp);
+        }
+        return s1->Push(e);
+    }
 }
 template<class ElemType>
 Status Stack2Queue<ElemType>::DelQueue(ElemType &e) {
     //判空
+    if(s1->IsEmpty())
+        return s2->Pop(e);
     if(!s1->IsEmpty()){
         ElemType e_tmp;
         //将s1中元素倒入s2
@@ -63,13 +75,13 @@ Status Stack2Queue<ElemType>::DelQueue(ElemType &e) {
             s2->Push(e_tmp);
         }
         //此时s1栈底的元素在s2的top，将其pop实现出队
-        s2->Pop(e);
+        return s2->Pop(e);
         //将s2剩余元素倒回s1
-        while(!s2->IsEmpty()){
-            s2->Pop(e_tmp);
-            s1->Push(e_tmp);
-        }
-        return SUCCESS;
+//        while(!s2->IsEmpty()){
+//            s2->Pop(e_tmp);
+//            s1->Push(e_tmp);
+//        }
+//        return SUCCESS;
     }
     else
         return UNDER_FLOW;
@@ -77,7 +89,7 @@ Status Stack2Queue<ElemType>::DelQueue(ElemType &e) {
 template<class ElemType>
 bool Stack2Queue<ElemType>::IsEmpty() const{
     //判空列操作与栈判空相同
-    return s1->IsEmpty();
+    return (s1->IsEmpty()&&s2->IsEmpty());
 }
 
 #endif //DS_1_STACK2QUEUE_H
