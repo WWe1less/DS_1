@@ -40,8 +40,8 @@ template <class ElemType>
 Stack2Queue<ElemType>::~Stack2Queue()
 // 操作结果：销毁队列
 {
-    delete [] s1;
-    delete [] s2;       // 释放元素存储空间
+    delete  s1;
+    delete  s2;       // 释放元素存储空间
 }
 template<class ElemType>
 void Stack2Queue<ElemType>::ShowQueue(){
