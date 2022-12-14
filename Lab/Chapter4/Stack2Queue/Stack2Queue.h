@@ -62,7 +62,7 @@ Status Stack2Queue<ElemType>::DelQueue(ElemType &e) {
             s1->Pop(e_tmp);
             s2->Push(e_tmp);
         }
-        //此时s1中最先进去的元素在s2的top，将其pop实现出队
+        //此时s1栈底的元素在s2的top，将其pop实现出队
         s2->Pop(e);
         //将s2剩余元素倒回s1
         while(!s2->IsEmpty()){
