@@ -16,7 +16,8 @@ int main(void)
         cout << endl << "6. 测试下标运算符";
         cout << endl << "7. 测试连接运算符+";
         cout << endl << "8. 输入字符串1";
-        cout << endl << "9. 输入字符串2";        
+        cout << endl << "9. 输入字符串2";  
+		cout << endl << "r. 测试Reverse()";  
 		cout << endl << "0. 退出";
 		cout << endl << "选择功能(0~9):";
 		cin >> c;
@@ -98,6 +99,16 @@ int main(void)
            case '9':
 				cout << endl << "输入字符串2：";
 				Read(s2);
+				break;
+			case 'r':
+				cout << "字符串s1为：";
+				Write(s1);
+				cout << endl << "输入逆序的起点位置和长度：";
+				cin >> p >> l;
+				Reverse(s1, p, l);
+				cout << endl << "逆序结果为：";
+				Write(s1);
+				cout << endl;
 				break;
 		}
 	}

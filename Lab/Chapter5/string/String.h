@@ -52,6 +52,9 @@ bool operator >=(const String &s1, const String &s2);
 bool operator !=(const String &s1, const String &s2);
 	// 重载关系运算符!=
 
+Status Reverse(String &s, int p, int n);
+	// 逆序存储字符串s中从p位置开始长度为n的字符串
+
 // 串类及相关操作的实现部分
 String::String()
 //  操作结果：初始化空串 
@@ -275,6 +278,17 @@ bool operator !=(const String &s1, const String &s2)
 // 操作结果：重载关系运算符!=
 {
 	return strcmp(s1.CStr(), s2.CStr()) != 0;
+}
+
+Status Reverse(String &s, int p, int n)
+// 逆序存储字符串s中从p位置开始长度为n的字符串
+{
+	if (p>=n) {
+		return SUCCESS;
+		}
+	Swap(s[p],s[n]);
+	Reverse(s, p + 1, n - 1);
+  	return SUCCESS;
 }
 
 #endif
