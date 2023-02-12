@@ -2,146 +2,146 @@
 #define __STRING_H__
 #include "LinkList.h"
 
-// ´®Àà¶¨Òå 
+// ä¸²ç±»å®šä¹‰ 
 class String 
 {
 protected:
-//  ´®µÄÊı¾İ³ÉÔ±:
-	char *sVal;						            // ´®Öµ
-	int length;									// ´®³¤	
+//  ä¸²çš„æ•°æ®æˆå‘˜:
+	char *sVal;						            // ä¸²å€¼
+	int length;									// ä¸²é•¿	
 
 public:                           
-//  ´®µÄ·½·¨³ÉÔ±:
-	String();									// ¹¹Ôìº¯Êı 
-	virtual ~String();							// Îö¹¹º¯Êı
-	String(const String &s);					// ¸´ÖÆ¹¹Ôìº¯Êı
-	String(const char *s);					    // ×ª»»¹¹Ôìº¯Êı
-	String(LinkList<char> &s);					// ´ÓÏßĞÔ±í×ª»»µÄ¹¹Ôìº¯Êı
-	int GetLength() const;						// Çó´®³¤¶È			 
-	bool IsEmpty() const;						// ÅĞ¶Ï´®ÊÇ·ñÎª¿Õ
-	String &operator =(const String &s);		// ¸³ÖµÓï¾äÖØÔØ
-	const char *CStr() const;					// ½«´®×ª»»³É×Ö·ûÊı×é
-	char &operator [](int p) const;	    		// ÖØÔØÏÂ±êÔËËã·û
+//  ä¸²çš„æ–¹æ³•æˆå‘˜:
+	String();									// æ„é€ å‡½æ•° 
+	virtual ~String();							// ææ„å‡½æ•°
+	String(const String &s);					// å¤åˆ¶æ„é€ å‡½æ•°
+	String(const char *s);					    // è½¬æ¢æ„é€ å‡½æ•°
+	String(LinkList<char> &s);					// ä»çº¿æ€§è¡¨è½¬æ¢çš„æ„é€ å‡½æ•°
+	int GetLength() const;						// æ±‚ä¸²é•¿åº¦			 
+	bool IsEmpty() const;						// åˆ¤æ–­ä¸²æ˜¯å¦ä¸ºç©º
+	String &operator =(const String &s);		// èµ‹å€¼è¯­å¥é‡è½½
+	const char *CStr() const;					// å°†ä¸²è½¬æ¢æˆå­—ç¬¦æ•°ç»„
+	char &operator [](int p) const;	    		// é‡è½½ä¸‹æ ‡è¿ç®—ç¬¦
 };
 
-// ´®Ïà¹Ø²Ù×÷
-void Write(const String &s);					// Êä³ö´®
-void Read(String &s);							// ÊäÈë´® 
+// ä¸²ç›¸å…³æ“ä½œ
+void Write(const String &s);					// è¾“å‡ºä¸²
+void Read(String &s);							// è¾“å…¥ä¸² 
 void Copy(String &s1, const String &s2);
-	// ½«´®s2¸´ÖÆµ½´®s1
+	// å°†ä¸²s2å¤åˆ¶åˆ°ä¸²s1
 void Copy(String &s1, const String &s2, int n);
-	// ½«´®s2¸´ÖÆn¸ö×Ö·ûµ½´®s1 
+	// å°†ä¸²s2å¤åˆ¶nä¸ªå­—ç¬¦åˆ°ä¸²s1 
 Status Insert(String &s1, const String &s2, int p);
-    // ½«×Ö·û´®s2²åÈëµ½s1µÄpÎ»ÖÃ 
+    // å°†å­—ç¬¦ä¸²s2æ’å…¥åˆ°s1çš„pä½ç½® 
 Status Delete(String &s, int p, int n);
-    // É¾³ı×Ö·û´®sÖĞ´ÓpÎ»ÖÃ¿ªÊ¼³¤¶ÈÎªnµÄ×Ö·û´® 
+    // åˆ é™¤å­—ç¬¦ä¸²sä¸­ä»pä½ç½®å¼€å§‹é•¿åº¦ä¸ºnçš„å­—ç¬¦ä¸² 
 String SubString(const String &s, int p, int n);	
-	// Çó´®sµÄµÚp¸ö×Ö·û¿ªÊ¼µÄ³¤¶ÈÎªnµÄ×Ó´®
+	// æ±‚ä¸²sçš„ç¬¬pä¸ªå­—ç¬¦å¼€å§‹çš„é•¿åº¦ä¸ºnçš„å­ä¸²
 String operator +(const String &s1, const String &s2);
-	// ÖØÔØ×Ö·û´®Á¬½ÓÔËËã·û+ 
+	// é‡è½½å­—ç¬¦ä¸²è¿æ¥è¿ç®—ç¬¦+ 
 bool operator ==(const String &s1, const String &s2);
-	// ÖØÔØ¹ØÏµÔËËã·û==
+	// é‡è½½å…³ç³»è¿ç®—ç¬¦==
 bool operator <(const String &s1, const String &s2);
-	// ÖØÔØ¹ØÏµÔËËã·û<
+	// é‡è½½å…³ç³»è¿ç®—ç¬¦<
 bool operator >(const String &s1, const String &s2);
-	// ÖØÔØ¹ØÏµÔËËã·û>
+	// é‡è½½å…³ç³»è¿ç®—ç¬¦>
 bool operator <=(const String &s1, const String &s2);
-	// ÖØÔØ¹ØÏµÔËËã·û<=
+	// é‡è½½å…³ç³»è¿ç®—ç¬¦<=
 bool operator >=(const String &s1, const String &s2);
-	// ÖØÔØ¹ØÏµÔËËã·û>=
+	// é‡è½½å…³ç³»è¿ç®—ç¬¦>=
 bool operator !=(const String &s1, const String &s2);
-	// ÖØÔØ¹ØÏµÔËËã·û!=
+	// é‡è½½å…³ç³»è¿ç®—ç¬¦!=
 
-// ´®Àà¼°Ïà¹Ø²Ù×÷µÄÊµÏÖ²¿·Ö
+// ä¸²ç±»åŠç›¸å…³æ“ä½œçš„å®ç°éƒ¨åˆ†
 String::String()
-//  ²Ù×÷½á¹û£º³õÊ¼»¯¿Õ´® 
+//  æ“ä½œç»“æœï¼šåˆå§‹åŒ–ç©ºä¸² 
 {
-	length = 0;							    // ´®³¤¶ÈÎª0
-	sVal = NULL;							// ¿Õ´®
+	length = 0;							    // ä¸²é•¿åº¦ä¸º0
+	sVal = NULL;							// ç©ºä¸²
 }
 
 String::~String()
-// ²Ù×÷½á¹û£ºÏú»Ù´®£¬ÊÍ·Å´®ËùÕ¼ÓÃ¿Õ¼ä
+// æ“ä½œç»“æœï¼šé”€æ¯ä¸²ï¼Œé‡Šæ”¾ä¸²æ‰€å ç”¨ç©ºé—´
 {
-	delete []sVal;							// ÊÍ·Å´®sVal
+	delete []sVal;							// é‡Šæ”¾ä¸²sVal
 }
 
 String::String(const String &s)
-// ²Ù×÷½á¹û£º¸´ÖÆ¹¹Ôìº¯Êı,ÓÉ´®s¹¹ÔìĞÂ´®
+// æ“ä½œç»“æœï¼šå¤åˆ¶æ„é€ å‡½æ•°,ç”±ä¸²sæ„é€ æ–°ä¸²
 {
-	length = strlen(s.CStr());			    // ÉèÖÃ´®³¤
-	sVal = new char[length + 1];			// ·ÖÅä´æ´¢¿Õ¼ä
-	strcpy(sVal, s.CStr());				    // ¸´ÖÆ´®Öµ
+	length = strlen(s.CStr());			    // è®¾ç½®ä¸²é•¿
+	sVal = new char[length + 1];			// åˆ†é…å­˜å‚¨ç©ºé—´
+	strcpy(sVal, s.CStr());				    // å¤åˆ¶ä¸²å€¼
 }
 
 String::String(const char *s)
-// ²Ù×÷½á¹û£º×ª»»¹¹Ôìº¯Êı,ÓÉ×Ö·ûÊı×és×ª»»¹¹ÔìĞÂ´®
+// æ“ä½œç»“æœï¼šè½¬æ¢æ„é€ å‡½æ•°,ç”±å­—ç¬¦æ•°ç»„sè½¬æ¢æ„é€ æ–°ä¸²
 {
-	length = strlen(s);						// ÉèÖÃ´®³¤
-	sVal = new char[length + 1];			// ·ÖÅä´æ´¢¿Õ¼ä 
-	strcpy(sVal, s);						// ¸´ÖÆ´®Öµ
+	length = strlen(s);						// è®¾ç½®ä¸²é•¿
+	sVal = new char[length + 1];			// åˆ†é…å­˜å‚¨ç©ºé—´ 
+	strcpy(sVal, s);						// å¤åˆ¶ä¸²å€¼
 	sVal[length] = '\0';
 }
 
 String::String(LinkList<char> &s)
-// ²Ù×÷½á¹û£º´ÓÏßĞÔ±í×ª»»¹¹ÔìĞÂ´®¡ª¡ª×ª»»¹¹Ôìº¯Êı
+// æ“ä½œç»“æœï¼šä»çº¿æ€§è¡¨è½¬æ¢æ„é€ æ–°ä¸²â€”â€”è½¬æ¢æ„é€ å‡½æ•°
 {
-	length = s.GetLength();						// ´®³¤
-	sVal = new char[length + 1];				// ·ÖÅä´æ´¢¿Õ¼ä 
-	for (int i = 0; i < length; i++)	        // ¸´ÖÆ´®Öµ
+	length = s.GetLength();						// ä¸²é•¿
+	sVal = new char[length + 1];				// åˆ†é…å­˜å‚¨ç©ºé—´ 
+	for (int i = 0; i < length; i++)	        // å¤åˆ¶ä¸²å€¼
 		s.GetElem(i + 1, sVal[i]);
-	sVal[length] = '\0';						// ´®ÖµÒÔ'\0'½áÊø	
+	sVal[length] = '\0';						// ä¸²å€¼ä»¥'\0'ç»“æŸ	
 }
 
 
 int String::GetLength() const
-// ²Ù×÷½á¹û£º·µ»Ø´®³¤¶È			 
+// æ“ä½œç»“æœï¼šè¿”å›ä¸²é•¿åº¦			 
 {
 	return length;
 }
 
 bool String::IsEmpty() const
-// ²Ù×÷½á¹û£ºÈç¹û´®Îª¿Õ£¬·µ»Øtrue£¬·ñÔò·µ»Øfalse
+// æ“ä½œç»“æœï¼šå¦‚æœä¸²ä¸ºç©ºï¼Œè¿”å›trueï¼Œå¦åˆ™è¿”å›false
 {
 	return length == 0;
 }
 
 String &String::operator =(const String &s)
-// ²Ù×÷½á¹û£º¸³ÖµÓï¾äÖØÔØ
+// æ“ä½œç»“æœï¼šèµ‹å€¼è¯­å¥é‡è½½
 {
 	if (&s != this)  {
-		delete []sVal;						// ÊÍ·ÅÔ­´®´æ´¢¿Õ¼ä
-		length = strlen(s.CStr());			// ÉèÖÃ´®³¤
-		sVal = new char[length + 1];		// ·ÖÅä´æ´¢¿Õ¼ä 
-		strcpy(sVal, s.CStr());			    // ¸´ÖÆ´®Öµ
+		delete []sVal;						// é‡Šæ”¾åŸä¸²å­˜å‚¨ç©ºé—´
+		length = strlen(s.CStr());			// è®¾ç½®ä¸²é•¿
+		sVal = new char[length + 1];		// åˆ†é…å­˜å‚¨ç©ºé—´ 
+		strcpy(sVal, s.CStr());			    // å¤åˆ¶ä¸²å€¼
 	}
 	return *this;
 }
 
 const char *String::CStr() const
-// ²Ù×÷½á¹û£º½«´®×ª»»³É×Ö·ûÊı×é 
+// æ“ä½œç»“æœï¼šå°†ä¸²è½¬æ¢æˆå­—ç¬¦æ•°ç»„ 
 {
-	return (const char *)sVal;				// ´®ÖµÀàĞÍ×ª»»
+	return (const char *)sVal;				// ä¸²å€¼ç±»å‹è½¬æ¢
 }
 
 char &String::operator [](int p) const
-// ²Ù×÷½á¹û£ºÖØÔØÏÂ±êÔËËã·û
+// æ“ä½œç»“æœï¼šé‡è½½ä¸‹æ ‡è¿ç®—ç¬¦
 {
 	return sVal[p];
 }
 
 void Write(const String &str)
-// ²Ù×÷½á¹û£ºÊä³ö´®
+// æ“ä½œç»“æœï¼šè¾“å‡ºä¸²
 {
-	cout << str.CStr() << endl;				// Êä³ö´®Öµ
+	cout << str.CStr() << endl;				// è¾“å‡ºä¸²å€¼
 }
 
 void Read(String &str)
-// ²Ù×÷½á¹û£ºÊäÈë´®
+// æ“ä½œç»“æœï¼šè¾“å…¥ä¸²
 {
 	string s;
 	cin >> s;
-	char *cs = new char[s.length() + 1];   // ÉêÇëÁÙÊ±¿Õ¼ä
+	char *cs = new char[s.length() + 1];   // ç”³è¯·ä¸´æ—¶ç©ºé—´
 	for (int i = 0; i < s.length(); i++)
 		cs[i] = s[i];
 	cs[s.length()] = '\0';
@@ -149,130 +149,130 @@ void Read(String &str)
 }
 
 void Copy(String &s1, const String &s2)
-// ²Ù×÷½á¹û£º½«´®s2¸´ÖÆµ½´®s1
+// æ“ä½œç»“æœï¼šå°†ä¸²s2å¤åˆ¶åˆ°ä¸²s1
 {
-	const char *cs2 = s2.CStr();             // ³õÊ¼´®
-	char *cs1 = new char[strlen(cs2) + 1];   // ÉêÇëÁÙÊ±¿Õ¼ä
-	strcpy(cs1, cs2);					     // ¸´ÖÆ´®
-	s1 = cs1;								 // ´®¸³Öµ
-//	delete []cs1;							 // ÊÍ·ÅÁÙÊ±¿Õ¼ä
+	const char *cs2 = s2.CStr();             // åˆå§‹ä¸²
+	char *cs1 = new char[strlen(cs2) + 1];   // ç”³è¯·ä¸´æ—¶ç©ºé—´
+	strcpy(cs1, cs2);					     // å¤åˆ¶ä¸²
+	s1 = cs1;								 // ä¸²èµ‹å€¼
+//	delete []cs1;							 // é‡Šæ”¾ä¸´æ—¶ç©ºé—´
 }
 
 void Copyn(String &s1, const String &s2, int n)
-// ²Ù×÷½á¹û£º½«´®s2³¤¶ÈÎªnµÄÇ°×º¸´ÖÆ×Ö·ûµ½´®s1 
+// æ“ä½œç»“æœï¼šå°†ä¸²s2é•¿åº¦ä¸ºnçš„å‰ç¼€å¤åˆ¶å­—ç¬¦åˆ°ä¸²s1 
 {
-	const char *cs2 = s2.CStr();             // ³õÊ¼´®
-	int len = strlen(cs2) < n ? strlen(cs2) : n;// È¡Ä¿±ê´®³¤
-	char *cs1 = new char[len + 1];			 // ÉêÇëÁÙÊ±¿Õ¼ä
-	strncpy(cs1, cs2, n);			         // ¸´ÖÆ´®
-	cs1[len] = '\0';						 // ´®ÖµÒÔ'\0'½áÊø
-	s1 = cs1;								 // ´®¸³Öµ
+	const char *cs2 = s2.CStr();             // åˆå§‹ä¸²
+	int len = strlen(cs2) < n ? strlen(cs2) : n;// å–ç›®æ ‡ä¸²é•¿
+	char *cs1 = new char[len + 1];			 // ç”³è¯·ä¸´æ—¶ç©ºé—´
+	strncpy(cs1, cs2, n);			         // å¤åˆ¶ä¸²
+	cs1[len] = '\0';						 // ä¸²å€¼ä»¥'\0'ç»“æŸ
+	s1 = cs1;								 // ä¸²èµ‹å€¼
 }
 
 Status Insert(String &s1, const String &s2, int p)
-// ²Ù×÷½á¹û£ºÔÚs1µÄpÎ»ÖÃ²åÈë´®s2
+// æ“ä½œç»“æœï¼šåœ¨s1çš„pä½ç½®æ’å…¥ä¸²s2
 {
-	const char *cs1 = s1.CStr();		    // È¡µÚÒ»¸ö´®
-	const char *cs2 = s2.CStr();		    // È¡µÚ¶ş¸ö´®
+	const char *cs1 = s1.CStr();		    // å–ç¬¬ä¸€ä¸ªä¸²
+	const char *cs2 = s2.CStr();		    // å–ç¬¬äºŒä¸ªä¸²
 	if (p >=0 && p < strlen(cs1)) {
  	    int len = strlen(cs1) + strlen(cs2);
-        char *cs = new char[len + 1];       // ÉêÇëÁÙÊ±¿Õ¼ä
-	    strncpy(cs, cs1, p);			    // ¸´ÖÆµÚÒ»¸ö´®Ç°²¿·ÖµÄ´®Öµ
+        char *cs = new char[len + 1];       // ç”³è¯·ä¸´æ—¶ç©ºé—´
+	    strncpy(cs, cs1, p);			    // å¤åˆ¶ç¬¬ä¸€ä¸ªä¸²å‰éƒ¨åˆ†çš„ä¸²å€¼
 		cs[p] = '\0';
-		strcat(cs, cs2);				    // Á¬½ÓµÚ¶ş¸ö´®
+		strcat(cs, cs2);				    // è¿æ¥ç¬¬äºŒä¸ªä¸²
 		int	 j = p + strlen(cs2);
 		for (int i = p; i < strlen(cs1); i++, j++)
-	        cs[j] = cs1[i];                 // ¸´ÖÆµÚÒ»¸ö´®ºó²¿·ÖµÄ´®Öµ
+	        cs[j] = cs1[i];                 // å¤åˆ¶ç¬¬ä¸€ä¸ªä¸²åéƒ¨åˆ†çš„ä¸²å€¼
   	    cs[len] = '\0';
-  	    s1 = cs;					        // ´®¸³Öµ
+  	    s1 = cs;					        // ä¸²èµ‹å€¼
   	    return SUCCESS;
   	} 
   	return RANGE_ERROR;
 }
 
 Status Delete(String &s, int p, int n)
-// É¾³ı×Ö·û´®sÖĞ´ÓpÎ»ÖÃ¿ªÊ¼³¤¶ÈÎªnµÄ×Ö·û´®
+// åˆ é™¤å­—ç¬¦ä¸²sä¸­ä»pä½ç½®å¼€å§‹é•¿åº¦ä¸ºnçš„å­—ç¬¦ä¸²
 {
-    const char *cs = s.CStr();		       // È¡Ô­´®Öµ 
+    const char *cs = s.CStr();		       // å–åŸä¸²å€¼ 
 	if (p >=0 && (p + n) < strlen(cs)) {
-	    int len = strlen(cs) - n;          // ÇóĞÂ´®µÄ³¤¶È 
-        char *news = new char[len + 1];    // ÉêÇëÁÙÊ±¿Õ¼ä
-	    strncpy(news, cs, p);			   // ¸´ÖÆÔ­´®Ç°²¿·ÖµÄ´®Öµ
+	    int len = strlen(cs) - n;          // æ±‚æ–°ä¸²çš„é•¿åº¦ 
+        char *news = new char[len + 1];    // ç”³è¯·ä¸´æ—¶ç©ºé—´
+	    strncpy(news, cs, p);			   // å¤åˆ¶åŸä¸²å‰éƒ¨åˆ†çš„ä¸²å€¼
 		int	 j = p + n;
 		for (int i = p; i < len; i++, j++)
-	        news[i] = cs[j];               // ¸´ÖÆµÚÒ»¸ö´®ºó²¿·ÖµÄ´®Öµ
+	        news[i] = cs[j];               // å¤åˆ¶ç¬¬ä¸€ä¸ªä¸²åéƒ¨åˆ†çš„ä¸²å€¼
   	    news[len] = '\0';
-  	    s = news;					       // ´®¸³Öµ
-  	    delete []news;					   // ÊÍ·ÅÁÙÊ±¿Õ¼ä
+  	    s = news;					       // ä¸²èµ‹å€¼
+  	    delete []news;					   // é‡Šæ”¾ä¸´æ—¶ç©ºé—´
   	    return SUCCESS;
   	} 
   	return RANGE_ERROR;
 } 
 
 String SubString(const String &s, int p, int n)
-// ³õÊ¼Ìõ¼ş£º´®s´æÔÚ£¬0 <= p < s.GetLength()ÇÒ0 <= n <= s.GetLength() - p
-// ²Ù×÷½á¹û£º·µ»Ø´®sµÄµÚp¸ö×Ö·û¿ªÊ¼µÄ³¤¶ÈÎªnµÄ×Ó´®
+// åˆå§‹æ¡ä»¶ï¼šä¸²så­˜åœ¨ï¼Œ0 <= p < s.GetLength()ä¸”0 <= n <= s.GetLength() - p
+// æ“ä½œç»“æœï¼šè¿”å›ä¸²sçš„ç¬¬pä¸ªå­—ç¬¦å¼€å§‹çš„é•¿åº¦ä¸ºnçš„å­ä¸²
 {
 	if  (0 <= p && p + n < s.GetLength() && 0 <= n)	{
-		char *sub = new char[n + 1];		// ÉêÇëÁÙÊ±¿Õ¼ä
-		const char *strp = s.CStr();		// Éú³É×Ö·ûÊı×é
-		strncpy(sub, strp + p, n);		    // ¸´ÖÆ´®
-		sub[n] = '\0';						// ´®ÖµÒÔ'\0'½áÊø
-		String cs(sub);					    // Éú³É´®¶ÔÏó
-		delete []sub;                       // ÊÍ·ÅÁÙÊ±¿Õ¼ä
+		char *sub = new char[n + 1];		// ç”³è¯·ä¸´æ—¶ç©ºé—´
+		const char *strp = s.CStr();		// ç”Ÿæˆå­—ç¬¦æ•°ç»„
+		strncpy(sub, strp + p, n);		    // å¤åˆ¶ä¸²
+		sub[n] = '\0';						// ä¸²å€¼ä»¥'\0'ç»“æŸ
+		String cs(sub);					    // ç”Ÿæˆä¸²å¯¹è±¡
+		delete []sub;                       // é‡Šæ”¾ä¸´æ—¶ç©ºé—´
 		return cs;
 	}
-	else	{	// ·µ»Ø¿Õ´®
-		String cs("");						// Éú³É¿Õ´®¶ÔÏó
+	else	{	// è¿”å›ç©ºä¸²
+		String cs("");						// ç”Ÿæˆç©ºä¸²å¯¹è±¡
 		return cs;
 	}
 }
 
 String operator +(const String &s1, const String &s2)
-// ²Ù×÷½á¹û£ºÖØÔØÁ¬½ÓÔËËã·û+ 
+// æ“ä½œç»“æœï¼šé‡è½½è¿æ¥è¿ç®—ç¬¦+ 
 {
-	const char *cs1 = s1.CStr();		    // È¡µÚÒ»¸ö´®Öµ 
-	const char *cs2 = s2.CStr();		    // È¡µÚ¶ş¸ö´®Öµ 
-	char *cs = new char[strlen(cs1) + strlen(cs2) + 1];// ÉêÇëÁÙÊ±¿Õ¼ä
-	strcpy(cs, cs1);					    // ¸´ÖÆµÚÒ»¸ö´®
-	strcat(cs, cs2);					    // Á¬½ÓµÚ¶ş¸ö´®
-	String s(cs);					        // ¶¨Òå´®¶ÔÏó²¢³õÊ¼»¯ 
-	delete []cs;                            // ÊÍ·ÅÁÙÊ±¿Õ¼ä
+	const char *cs1 = s1.CStr();		    // å–ç¬¬ä¸€ä¸ªä¸²å€¼ 
+	const char *cs2 = s2.CStr();		    // å–ç¬¬äºŒä¸ªä¸²å€¼ 
+	char *cs = new char[strlen(cs1) + strlen(cs2) + 1];// ç”³è¯·ä¸´æ—¶ç©ºé—´
+	strcpy(cs, cs1);					    // å¤åˆ¶ç¬¬ä¸€ä¸ªä¸²
+	strcat(cs, cs2);					    // è¿æ¥ç¬¬äºŒä¸ªä¸²
+	String s(cs);					        // å®šä¹‰ä¸²å¯¹è±¡å¹¶åˆå§‹åŒ– 
+	delete []cs;                            // é‡Šæ”¾ä¸´æ—¶ç©ºé—´
 	return s;
 }
 
 bool operator ==(const String &s1, const String &s2)
-// ²Ù×÷½á¹û£ºÖØÔØ¹ØÏµÔËËã·û==
+// æ“ä½œç»“æœï¼šé‡è½½å…³ç³»è¿ç®—ç¬¦==
 {
 	return strcmp(s1.CStr(), s2.CStr()) == 0;
 }
 
 bool operator <(const String &s1, const String &s2)
-// ²Ù×÷½á¹û£ºÖØÔØ¹ØÏµÔËËã·û<
+// æ“ä½œç»“æœï¼šé‡è½½å…³ç³»è¿ç®—ç¬¦<
 {
 	return strcmp(s1.CStr(), s2.CStr()) < 0;
 }
 
 bool operator >(const String &s1, const String &s2)
-// ²Ù×÷½á¹û£ºÖØÔØ¹ØÏµÔËËã·û>
+// æ“ä½œç»“æœï¼šé‡è½½å…³ç³»è¿ç®—ç¬¦>
 {
 	return strcmp(s1.CStr(), s2.CStr()) > 0;
 }
 
 bool operator <=(const String &s1, const String &s2)
-// ²Ù×÷½á¹û£ºÖØÔØ¹ØÏµÔËËã·û<=
+// æ“ä½œç»“æœï¼šé‡è½½å…³ç³»è¿ç®—ç¬¦<=
 {
 	return strcmp(s1.CStr(), s2.CStr()) <= 0;
 }
 
 bool operator >=(const String &s1, const String &s2)
-// ²Ù×÷½á¹û£ºÖØÔØ¹ØÏµÔËËã·û>=
+// æ“ä½œç»“æœï¼šé‡è½½å…³ç³»è¿ç®—ç¬¦>=
 {
 	return strcmp(s1.CStr(), s2.CStr()) >= 0;
 }
 
 bool operator !=(const String &s1, const String &s2)
-// ²Ù×÷½á¹û£ºÖØÔØ¹ØÏµÔËËã·û!=
+// æ“ä½œç»“æœï¼šé‡è½½å…³ç³»è¿ç®—ç¬¦!=
 {
 	return strcmp(s1.CStr(), s2.CStr()) != 0;
 }
