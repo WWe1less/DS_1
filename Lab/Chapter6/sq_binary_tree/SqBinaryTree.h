@@ -1,141 +1,141 @@
 #ifndef __SQ_BINNARY_TREE_H__
 #define __SQ_BINNARY_TREE_H__
-#include "Assistance.h"						// ¸¨ÖúÈí¼ş°ü
-#include "LinkQueue.h"						// Á´¶ÓÁĞ
+#include "Assistance.h"						// è¾…åŠ©è½¯ä»¶åŒ…
+#include "LinkQueue.h"						// é“¾é˜Ÿåˆ—
 
-// Ë³Ğò¶ş²æÊ÷Àà
+// é¡ºåºäºŒå‰æ ‘ç±»
 template <class ElemType>
 class SqBinaryTree
 {
 protected:
-//  Ë³Ğò¶ş²æÊ÷µÄÊı¾İ³ÉÔ±:
-	int maxSize;					       // Ë³Ğò¶ş²æÊ÷µÄ×î´ó´æ´¢¿Õ¼ä 
-	int *tag;	                           // ½áµãÊ¹ÓÃ±êÖ¾
-	ElemType *elems;					   // ½áµã´æ´¢¿Õ¼ä
+//  é¡ºåºäºŒå‰æ ‘çš„æ•°æ®æˆå‘˜:
+	int maxSize;					       // é¡ºåºäºŒå‰æ ‘çš„æœ€å¤§å­˜å‚¨ç©ºé—´ 
+	int *tag;	                           // ç»“ç‚¹ä½¿ç”¨æ ‡å¿—
+	ElemType *elems;					   // ç»“ç‚¹å­˜å‚¨ç©ºé—´
 
-//	¸¨Öúº¯Êı:
-	int NodeCount(int r) const;							// Í³¼ÆÒÔrÎª¸ùµÄ¶ş²æÊ÷ÖĞ½áµã¸öÊı
-	void SetNodeEmpty(int p);							// ½«½áµãpÖÃ¿Õ
-	void Destroy(int r);								// É¾³ıÒÔrÎª¸ùµÄ¶ş²æÊ÷
-	void PreOrder(int r, void (*Visit)(const ElemType &)) const;// ÏÈĞò±éÀúÒÔrÎª¸ùµÄ¶ş²æÊ÷
-	void InOrder(int r, void (*Visit)(const ElemType &)) const;	// ÖĞĞò±éÀúÒÔrÎª¸ùµÄ¶ş²æÊ÷
-	void PostOrder(int r, void (*Visit)(const ElemType &)) const;// ºóĞò±éÀúÒÔrÎª¸ùµÄ¶ş²æÊ÷
-    int Height(int r) const;							// ÇóÒÔrÎª¸ùµÄ¶ş²æÊ÷µÄ¸ß¶È 
+//	è¾…åŠ©å‡½æ•°:
+	int NodeCount(int r) const;							// ç»Ÿè®¡ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘ä¸­ç»“ç‚¹ä¸ªæ•°
+	void SetNodeEmpty(int p);							// å°†ç»“ç‚¹pç½®ç©º
+	void Destroy(int r);								// åˆ é™¤ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘
+	void PreOrder(int r, void (*Visit)(const ElemType &)) const;// å…ˆåºéå†ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘
+	void InOrder(int r, void (*Visit)(const ElemType &)) const;	// ä¸­åºéå†ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘
+	void PostOrder(int r, void (*Visit)(const ElemType &)) const;// ååºéå†ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘
+    int Height(int r) const;							// æ±‚ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘çš„é«˜åº¦ 
 
 public:
-//  Ë³Ğò¶ş²æÊ÷µÄº¯Êı³ÉÔ±:
-	SqBinaryTree(int size = DEFAULT_SIZE);				// ¹¹Ôìº¯Êı
-	virtual ~SqBinaryTree();							// Îö¹¹º¯Êı
-	int GetRoot() const;					            // Çó¶ş²æÊ÷ÖĞ¸ù½áµã 
-	bool IsNodeEmpty(int p) const;					    // ÅĞ¶Ï½áµãpÊÇ·ñÎª¿Õ
-	Status GetElem(int p, ElemType &e);				    // ·µ»Ø½áµãpµÄÔªËØÖµ
-	Status SetElem(int p, const ElemType &e);			// ½«½áµãpµÄÖµÖÃÎªe
-	bool IsEmpty() const;								// ÅĞ¶Ï¶ş²æÊ÷ÊÇ·ñÎª¿Õ
-	void InOrder(void (*Visit)(const ElemType &)) const;// ÖĞĞò±éÀú¶ş²æÊ÷	
-	void PreOrder(void (*Visit)(const ElemType &)) const;// ÏÈĞò±éÀú¶ş²æÊ÷
-	void PostOrder(void (*Visit)(const ElemType &)) const;// ºóĞò±éÀú¶ş²æÊ÷
-	void LevelOrder(void (*Visit)(const ElemType &)) const;// ²ã´Î±éÀú¶ş²æÊ÷
-	int NodeCount() const;								// Çó¶ş²æÊ÷µÄ½áµã¸öÊı
-	int LeftChild(const int p) const;					// Çó¶ş²æÊ÷ÖĞ½áµãpµÄ×óº¢×Ó
-	int RightChild(const int p) const;				    // Çó¶ş²æÊ÷ÖĞ½áµãpµÄÓÒº¢×Ó
-	int LeftSibling(const int p) const;					// Çó¶ş²æÊ÷ÖĞ½áµãpµÄ×óĞÖµÜ 
-	int RightSibling(const int p) const;				// Çó¶ş²æÊ÷ÖĞ½áµãpµÄÓÒĞÖµÜ
-	int Parent(const int p) const;					    // Çó¶ş²æÊ÷ÖĞ½áµãpµÄË«Ç×
-	int Find(const ElemType &e) const;						// ²éÕÒ¶ş²æÊ÷ÖĞÔªËØe 
-	Status InsertLeftChild(int p, const ElemType &e);	// ²åÈëÔªËØ×÷Îª½áµãp×óº¢×Ó
-	Status InsertRightChild(int p, const ElemType &e);  // ²åÈëÔªËØ×÷Îª½áµãpÓÒº¢×Ó
-	Status DeleteLeftChild(int p);					    // É¾³ı¶ş²æÊ÷ÖĞ½áµãp×ó×ÓÊ÷
-	Status DeleteRightChild(int p);					    // É¾³ı¶ş²æÊ÷ÖĞ½áµãpÓÒ×Ó´å
-	int	Height() const;									// Çó¶ş²æÊ÷µÄ¸ß
-	SqBinaryTree(const ElemType &e, int size = DEFAULT_SIZE);   // ½¨Á¢ÒÔeÎª¸ùµÄ¶ş²æÊ÷
-	SqBinaryTree(const SqBinaryTree<ElemType> &t);		    // ¸´ÖÆ¹¹Ôìº¯Êı
+//  é¡ºåºäºŒå‰æ ‘çš„å‡½æ•°æˆå‘˜:
+	SqBinaryTree(int size = DEFAULT_SIZE);				// æ„é€ å‡½æ•°
+	virtual ~SqBinaryTree();							// ææ„å‡½æ•°
+	int GetRoot() const;					            // æ±‚äºŒå‰æ ‘ä¸­æ ¹ç»“ç‚¹ 
+	bool IsNodeEmpty(int p) const;					    // åˆ¤æ–­ç»“ç‚¹pæ˜¯å¦ä¸ºç©º
+	Status GetElem(int p, ElemType &e);				    // è¿”å›ç»“ç‚¹pçš„å…ƒç´ å€¼
+	Status SetElem(int p, const ElemType &e);			// å°†ç»“ç‚¹pçš„å€¼ç½®ä¸ºe
+	bool IsEmpty() const;								// åˆ¤æ–­äºŒå‰æ ‘æ˜¯å¦ä¸ºç©º
+	void InOrder(void (*Visit)(const ElemType &)) const;// ä¸­åºéå†äºŒå‰æ ‘	
+	void PreOrder(void (*Visit)(const ElemType &)) const;// å…ˆåºéå†äºŒå‰æ ‘
+	void PostOrder(void (*Visit)(const ElemType &)) const;// ååºéå†äºŒå‰æ ‘
+	void LevelOrder(void (*Visit)(const ElemType &)) const;// å±‚æ¬¡éå†äºŒå‰æ ‘
+	int NodeCount() const;								// æ±‚äºŒå‰æ ‘çš„ç»“ç‚¹ä¸ªæ•°
+	int LeftChild(const int p) const;					// æ±‚äºŒå‰æ ‘ä¸­ç»“ç‚¹pçš„å·¦å­©å­
+	int RightChild(const int p) const;				    // æ±‚äºŒå‰æ ‘ä¸­ç»“ç‚¹pçš„å³å­©å­
+	int LeftSibling(const int p) const;					// æ±‚äºŒå‰æ ‘ä¸­ç»“ç‚¹pçš„å·¦å…„å¼Ÿ 
+	int RightSibling(const int p) const;				// æ±‚äºŒå‰æ ‘ä¸­ç»“ç‚¹pçš„å³å…„å¼Ÿ
+	int Parent(const int p) const;					    // æ±‚äºŒå‰æ ‘ä¸­ç»“ç‚¹pçš„åŒäº²
+	int Find(const ElemType &e) const;						// æŸ¥æ‰¾äºŒå‰æ ‘ä¸­å…ƒç´ e 
+	Status InsertLeftChild(int p, const ElemType &e);	// æ’å…¥å…ƒç´ ä½œä¸ºç»“ç‚¹på·¦å­©å­
+	Status InsertRightChild(int p, const ElemType &e);  // æ’å…¥å…ƒç´ ä½œä¸ºç»“ç‚¹på³å­©å­
+	Status DeleteLeftChild(int p);					    // åˆ é™¤äºŒå‰æ ‘ä¸­ç»“ç‚¹på·¦å­æ ‘
+	Status DeleteRightChild(int p);					    // åˆ é™¤äºŒå‰æ ‘ä¸­ç»“ç‚¹på³å­æ‘
+	int	Height() const;									// æ±‚äºŒå‰æ ‘çš„é«˜
+	SqBinaryTree(const ElemType &e, int size = DEFAULT_SIZE);   // å»ºç«‹ä»¥eä¸ºæ ¹çš„äºŒå‰æ ‘
+	SqBinaryTree(const SqBinaryTree<ElemType> &t);		    // å¤åˆ¶æ„é€ å‡½æ•°
 	SqBinaryTree(ElemType es[], int ta[], int size = DEFAULT_SIZE);	
-		// ÓÉes[]¡¢ta[]Óësize¹¹Ôì¶ş²æÊ÷
+		// ç”±es[]ã€ta[]ä¸sizeæ„é€ äºŒå‰æ ‘
 	SqBinaryTree<ElemType> &operator=(const SqBinaryTree<ElemType>& t);		
-		// ¸³ÖµÔËËã·ûÖØÔØ
+		// èµ‹å€¼è¿ç®—ç¬¦é‡è½½
 };
 
 
 template <class ElemType>
 void DisplayBTWithTreeShape(int r, int level);
-	//	°´Ê÷×´ĞÎÊ½ÏÔÊ¾ÒÔrÎª¸ùµÄ¶ş²æÊ÷£¬levelÎª²ã´ÎÊı£¬Éè¸ù½áµãµÄ²ã´ÎÊıÎª1
+	//	æŒ‰æ ‘çŠ¶å½¢å¼æ˜¾ç¤ºä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘ï¼Œlevelä¸ºå±‚æ¬¡æ•°ï¼Œè®¾æ ¹ç»“ç‚¹çš„å±‚æ¬¡æ•°ä¸º1
 template <class ElemType>
 void DisplayBTWithTreeShape(SqBinaryTree<ElemType> &bt);
-	//	Ê÷×´ĞÎÊ½ÏÔÊ¾¶ş²æÊ÷ 
+	//	æ ‘çŠ¶å½¢å¼æ˜¾ç¤ºäºŒå‰æ ‘ 
 template <class ElemType>
 void CreateBinaryTree(ElemType es[], int ta[], int r, ElemType pre[], ElemType in[], 
 	int preLeft, int preRight, int inLeft, int inRight);	
-	// ÒÑÖª¶ş²æÊ÷µÄÏÈĞòĞòÁĞpre[preLeft..preRight]ºÍÖĞĞòĞòÁĞin[inLeft..inRight]¹¹ÔìÒÔrÎª¸ùµÄ¶ş²æÊ÷
+	// å·²çŸ¥äºŒå‰æ ‘çš„å…ˆåºåºåˆ—pre[preLeft..preRight]å’Œä¸­åºåºåˆ—in[inLeft..inRight]æ„é€ ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘
 template <class ElemType>
 SqBinaryTree<ElemType> &CreateBinaryTree(ElemType pre[], ElemType in[], int n, int size = DEFAULT_SIZE);
-	// ÒÑÖªÏÈĞòºÍÖĞĞòĞòÁĞ¹¹Ôì¶ş²æÊ÷
+	// å·²çŸ¥å…ˆåºå’Œä¸­åºåºåˆ—æ„é€ äºŒå‰æ ‘
 
-// Ë³Ğò¶ş²æÊ÷ÀàµÄÊµÏÖ²¿·Ö
+// é¡ºåºäºŒå‰æ ‘ç±»çš„å®ç°éƒ¨åˆ†
 template <class ElemType>
 bool SqBinaryTree<ElemType>::IsNodeEmpty(int p) const
-// ²Ù×÷½á¹û£ºÈç¹û½áµãpÎª¿Õ,Ôò·µ»Øtrue,·ñÔò·µ»Øfalse
+// æ“ä½œç»“æœï¼šå¦‚æœç»“ç‚¹pä¸ºç©º,åˆ™è¿”å›true,å¦åˆ™è¿”å›false
 {
 	if(p < 0 || p >= maxSize || tag[p] == 0)
-        return true;	// ´ËÊ±½áµãÎª¿Õ
+        return true;	// æ­¤æ—¶ç»“ç‚¹ä¸ºç©º
 	else
         return false;
 }
 
 template <class ElemType>
 Status SqBinaryTree<ElemType>::GetElem(int p, ElemType &e)
-// ²Ù×÷½á¹û£ºÓÃe·µ»Ø½áµãpµÄÔªËØÖµ,Ôò²Ù×÷³É¹¦,º¯Êı·µ»ØSUCCESS,·ñÔò·µ»ØFAIL
+// æ“ä½œç»“æœï¼šç”¨eè¿”å›ç»“ç‚¹pçš„å…ƒç´ å€¼,åˆ™æ“ä½œæˆåŠŸ,å‡½æ•°è¿”å›SUCCESS,å¦åˆ™è¿”å›FAIL
 {
 	if (IsNodeEmpty(p))
-        return FAIL;                // ²Ù×÷Ê§°Ü
+        return FAIL;                // æ“ä½œå¤±è´¥
 	else	{
-		e = elems[p];				// ÓÃe·µ»Ø½áµãpµÄÔªËØÖµ
-		return SUCCESS;				// ²Ù×÷³É¹¦
+		e = elems[p];				// ç”¨eè¿”å›ç»“ç‚¹pçš„å…ƒç´ å€¼
+		return SUCCESS;				// æ“ä½œæˆåŠŸ
 	}
 }
 
 template <class ElemType>
 Status SqBinaryTree<ElemType>::SetElem(int p, const ElemType &e)
-// ²Ù×÷½á¹û£ºÈç¹û²»´æÔÚ½áµãp,Ôò·µ»ØFAIL,·ñÔò·µ»ØSUCCESS,²¢½«½áµãpµÄÖµÉèÖÃÎªe
+// æ“ä½œç»“æœï¼šå¦‚æœä¸å­˜åœ¨ç»“ç‚¹p,åˆ™è¿”å›FAIL,å¦åˆ™è¿”å›SUCCESS,å¹¶å°†ç»“ç‚¹pçš„å€¼è®¾ç½®ä¸ºe
 {
 	if (IsNodeEmpty(p))
-        return FAIL;		        // ²Ù×÷Ê§°Ü
-	else	{	// ´æÔÚ½áµãp
-		elems[p] = e;				// ½«½áµãpµÄÖµÉèÖÃÎªe
-		return SUCCESS;				// ·µ»ØSUCCESS
+        return FAIL;		        // æ“ä½œå¤±è´¥
+	else	{	// å­˜åœ¨ç»“ç‚¹p
+		elems[p] = e;				// å°†ç»“ç‚¹pçš„å€¼è®¾ç½®ä¸ºe
+		return SUCCESS;				// è¿”å›SUCCESS
 	}
 }
 
 template <class ElemType>
 void SqBinaryTree<ElemType>::SetNodeEmpty(int p)
-// ²Ù×÷½á¹û£º½«½áµãpÖÃ¿Õ
+// æ“ä½œç»“æœï¼šå°†ç»“ç‚¹pç½®ç©º
 {
 	if (p >= 0 && p < maxSize && (2 * p + 1 >= maxSize || tag[2 * p + 1] == 0)
         && (2 * p + 2 >= maxSize || tag[2 * p + 2] == 0))
-        tag[p] = 0;	// ½«pÖÃ¿Õ
+        tag[p] = 0;	// å°†pç½®ç©º
 }
 
 template <class ElemType>
 SqBinaryTree<ElemType>::SqBinaryTree(int size)
-// ²Ù×÷½á¹û£º¹¹ÔìÒ»¿Ã¿Õ¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šæ„é€ ä¸€æ£µç©ºäºŒå‰æ ‘
 {
-	maxSize = size;			             // ÉèÖÃ¶ş²æÊ÷µÄ×î´óÈİÁ¿ 
-	elems = new ElemType[maxSize];	     // ·ÖÅäÊı¾İÔªËØµÄ´æ´¢¿Õ¼ä
-	tag = new int[maxSize];	// ·ÖÅä±ê¼ÇÊı×éµÄ´æ´¢¿Õ¼ä
-	for (int i = 0; i <maxSize; i++)	 // ½«ËùÓĞ½áµã±êÊ¶Îª¿Õ
+	maxSize = size;			             // è®¾ç½®äºŒå‰æ ‘çš„æœ€å¤§å®¹é‡ 
+	elems = new ElemType[maxSize];	     // åˆ†é…æ•°æ®å…ƒç´ çš„å­˜å‚¨ç©ºé—´
+	tag = new int[maxSize];	// åˆ†é…æ ‡è®°æ•°ç»„çš„å­˜å‚¨ç©ºé—´
+	for (int i = 0; i <maxSize; i++)	 // å°†æ‰€æœ‰ç»“ç‚¹æ ‡è¯†ä¸ºç©º
 		tag[i] = 0;
 }
 
 template <class ElemType>
 SqBinaryTree<ElemType>::~SqBinaryTree()
-// ²Ù×÷½á¹û£ºÉ¾³ı¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šåˆ é™¤äºŒå‰æ ‘
 {
-	delete []elems;					// ÊÍ·ÅÔªËØ´æ´¢¿Õ¼ä
-	delete []tag;					// ÊÍ·Å±ê¼Ç´æ´¢¿Õ¼ä
+	delete []elems;					// é‡Šæ”¾å…ƒç´ å­˜å‚¨ç©ºé—´
+	delete []tag;					// é‡Šæ”¾æ ‡è®°å­˜å‚¨ç©ºé—´
 }
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::GetRoot() const
-// ²Ù×÷½á¹û£º·µ»Ø¶ş²æÊ÷µÄ¸ù½áµã 
+// æ“ä½œç»“æœï¼šè¿”å›äºŒå‰æ ‘çš„æ ¹ç»“ç‚¹ 
 {
 	if (tag[0] == 1)
       return  0;
@@ -145,127 +145,127 @@ int SqBinaryTree<ElemType>::GetRoot() const
 
 template <class ElemType>
 bool SqBinaryTree<ElemType>::IsEmpty() const
-// ²Ù×÷½á¹û£ºÅĞ¶Ï¶ş²æÊ÷ÊÇ·ñÎª¿Õ
+// æ“ä½œç»“æœï¼šåˆ¤æ–­äºŒå‰æ ‘æ˜¯å¦ä¸ºç©º
 {
 	return IsNodeEmpty(0);
 }
 
 template <class ElemType>
 void SqBinaryTree<ElemType>::PreOrder(int r, void (*Visit)(const ElemType &)) const
-// ²Ù×÷½á¹û£ºÏÈĞò±éÀúÒÔrÎª¸ùµÄ¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šå…ˆåºéå†ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘
 {
-	if (!IsNodeEmpty(r)) 	{	            // ¸ù·Ç¿Õ
-		(*Visit)(elems[r]);			        // ·ÃÎÊ¸ù½áµã
-		PreOrder(LeftChild(r), Visit);		// ±éÀú×ó×ÓÊ÷
-		PreOrder(RightChild(r), Visit);		// ±éÀúÓÒ×ÓÊ÷
+	if (!IsNodeEmpty(r)) 	{	            // æ ¹éç©º
+		(*Visit)(elems[r]);			        // è®¿é—®æ ¹ç»“ç‚¹
+		PreOrder(LeftChild(r), Visit);		// éå†å·¦å­æ ‘
+		PreOrder(RightChild(r), Visit);		// éå†å³å­æ ‘
 	}
 }
 
 template <class ElemType>
 void SqBinaryTree<ElemType>::PreOrder(void (*Visit)(const ElemType &)) const
-// ²Ù×÷½á¹û£ºÏÈĞò±éÀú¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šå…ˆåºéå†äºŒå‰æ ‘
 {
 	PreOrder(0, Visit);	
 }	
 
 template <class ElemType>
 void SqBinaryTree<ElemType>::InOrder(int r, void (*Visit)(const ElemType &)) const
-// ²Ù×÷½á¹û£ºÖĞĞò±éÀúÒÔrÎª¸ùµÄ¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šä¸­åºéå†ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘
 {
-	if (!IsNodeEmpty(r)) 	{	            // ¸ù·Ç¿Õ
-		InOrder(LeftChild(r), Visit);		// ±éÀú×ó×ÓÊ÷
-		(*Visit)(elems[r]);					// ·ÃÎÊ¸ù½áµã
-		InOrder(RightChild(r), Visit);		// ±éÀúÓÒ×ÓÊ÷
+	if (!IsNodeEmpty(r)) 	{	            // æ ¹éç©º
+		InOrder(LeftChild(r), Visit);		// éå†å·¦å­æ ‘
+		(*Visit)(elems[r]);					// è®¿é—®æ ¹ç»“ç‚¹
+		InOrder(RightChild(r), Visit);		// éå†å³å­æ ‘
 	}
 }
 
 template <class ElemType>
 void SqBinaryTree<ElemType>::InOrder(void (*Visit)(const ElemType &)) const
-// ²Ù×÷½á¹û£ºÖĞĞò±éÀú¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šä¸­åºéå†äºŒå‰æ ‘
 {
 	InOrder(0, Visit);	
 }	
 
 template <class ElemType>
 void SqBinaryTree<ElemType>::PostOrder(int r, void (*Visit)(const ElemType &)) const
-// ²Ù×÷½á¹û£ººóĞò±éÀúÒÔrÎª¸ùµÄ¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šååºéå†ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘
 {
-	if (!IsNodeEmpty(r)) 	{	            // ¸ù·Ç¿Õ
-		PostOrder(LeftChild(r), Visit);		// ±éÀú×ó×ÓÊ÷
-		PostOrder(RightChild(r), Visit);	// ±éÀúÓÒ×ÓÊ÷
-		(*Visit)(elems[r]);					// ·ÃÎÊ¸ù½áµã
+	if (!IsNodeEmpty(r)) 	{	            // æ ¹éç©º
+		PostOrder(LeftChild(r), Visit);		// éå†å·¦å­æ ‘
+		PostOrder(RightChild(r), Visit);	// éå†å³å­æ ‘
+		(*Visit)(elems[r]);					// è®¿é—®æ ¹ç»“ç‚¹
 	}
 }
 
 template <class ElemType>
 void SqBinaryTree<ElemType>::PostOrder(void (*Visit)(const ElemType &)) const
-// ²Ù×÷½á¹û£ººóĞò±éÀú¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šååºéå†äºŒå‰æ ‘
 {
 	PostOrder(0, Visit);	
 }	
 
 template <class ElemType>
 void SqBinaryTree<ElemType>::LevelOrder(void (*Visit)(const ElemType &)) const
-// ²Ù×÷½á¹û£º²ã´Î±éÀú¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šå±‚æ¬¡éå†äºŒå‰æ ‘
 {
-	LinkQueue<int> q;					// ¶¨Òå¸¨Öú¶ÓÁĞ
-	int t = 0;							// ´Ó¸ù½áµã¿ªÊ¼½øĞĞ²ã´Î±éÀú
+	LinkQueue<int> q;					// å®šä¹‰è¾…åŠ©é˜Ÿåˆ—
+	int t = 0;							// ä»æ ¹ç»“ç‚¹å¼€å§‹è¿›è¡Œå±‚æ¬¡éå†
 	
 	if (!IsNodeEmpty(t))
-        q.EnQueue(t);		// Èç¹û¸ù·Ç¿Õ,ÔòÈë¶Ó
-	while (!q.IsEmpty())	{	// q·Ç¿Õ,ËµÃ÷»¹ÓĞ½áµãÎ´·ÃÎÊ
+        q.EnQueue(t);		// å¦‚æœæ ¹éç©º,åˆ™å…¥é˜Ÿ
+	while (!q.IsEmpty())	{	// qéç©º,è¯´æ˜è¿˜æœ‰ç»“ç‚¹æœªè®¿é—®
 		q.DelQueue(t);     
 		(*Visit)(elems[t]);
-		if (!IsNodeEmpty(LeftChild(t)))				// ×óº¢×Ó·Ç¿Õ
-			q.EnQueue(LeftChild(t));				// ×óº¢×ÓÈë¶Ó
-		if (!IsNodeEmpty(RightChild(t)))			// ÓÒº¢×Ó·Ç¿Õ
-			q.EnQueue(RightChild(t));			// ÓÒº¢×ÓÈë¶Ó
+		if (!IsNodeEmpty(LeftChild(t)))				// å·¦å­©å­éç©º
+			q.EnQueue(LeftChild(t));				// å·¦å­©å­å…¥é˜Ÿ
+		if (!IsNodeEmpty(RightChild(t)))			// å³å­©å­éç©º
+			q.EnQueue(RightChild(t));			// å³å­©å­å…¥é˜Ÿ
 	}
 }
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::Height(int r) const
-// ²Ù×÷½á¹û£º·µ»ØÒÔrÎª¸ùµÄ¶ş²æÊ÷µÄ¸ß
+// æ“ä½œç»“æœï¼šè¿”å›ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘çš„é«˜
 {
-	if(IsNodeEmpty(r))		// ¿Õ¶ş²æÊ÷µÄ¸ßÎª0
+	if(IsNodeEmpty(r))		// ç©ºäºŒå‰æ ‘çš„é«˜ä¸º0
 		return 0;
 	else	{	
 		int lHeight, rHeight;
-		lHeight = Height(LeftChild(r));		// ÇórµÄ×ó×ÓÊ÷µÄ¸ß
-		rHeight = Height(RightChild(r));	// ÇórµÄÓÒ×ÓÊ÷µÄ¸ß
+		lHeight = Height(LeftChild(r));		// æ±‚rçš„å·¦å­æ ‘çš„é«˜
+		rHeight = Height(RightChild(r));	// æ±‚rçš„å³å­æ ‘çš„é«˜
 		return (lHeight > rHeight ? lHeight + 1: rHeight + 1);
-			// ·Ç¿Õ¶ş²æÊ÷¸ßÎª×óÓÒ×ÓÊ÷µÄ¸ßµÄ×î´óÖµÔÙ¼Ó1
+			// éç©ºäºŒå‰æ ‘é«˜ä¸ºå·¦å³å­æ ‘çš„é«˜çš„æœ€å¤§å€¼å†åŠ 1
 	}
 }
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::Height() const
-// ²Ù×÷½á¹û£º·µ»Ø¶ş²æÊ÷µÄ¸ß
+// æ“ä½œç»“æœï¼šè¿”å›äºŒå‰æ ‘çš„é«˜
 {
 	return Height(0);
 }
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::NodeCount(int r) const
-// ²Ù×÷½á¹û£º·µ»ØÒÔrÎª¸ùµÄ¶ş²æÊ÷µÄ½áµã¸öÊı
+// æ“ä½œç»“æœï¼šè¿”å›ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘çš„ç»“ç‚¹ä¸ªæ•°
 {
 	if (IsNodeEmpty(r))
-       return 0;// ¿Õ¶ş²æÊı½áµã¸öÊıÎª0
+       return 0;// ç©ºäºŒå‰æ•°ç»“ç‚¹ä¸ªæ•°ä¸º0
 	else
        return 1 + NodeCount(LeftChild(r)) + NodeCount(RightChild(r));
-                // ·Ç¿Õ¶ş²æÊ÷½áµã¸öÎª×óÓÒ×ÓÊ÷µÄ½áµã¸öÊıÖ®ºÍÔÙ¼Ó1
+                // éç©ºäºŒå‰æ ‘ç»“ç‚¹ä¸ªä¸ºå·¦å³å­æ ‘çš„ç»“ç‚¹ä¸ªæ•°ä¹‹å’Œå†åŠ 1
 }
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::NodeCount() const
-// ²Ù×÷½á¹û£º·µ»Ø¶ş²æÊ÷µÄ½áµã¸öÊı
+// æ“ä½œç»“æœï¼šè¿”å›äºŒå‰æ ‘çš„ç»“ç‚¹ä¸ªæ•°
 {
 	return NodeCount(0);
 }
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::LeftChild(const int p) const
-// ²Ù×÷½á¹û£º·µ»Ø¶ş²æÊ÷½áµãpµÄ×óº¢×Ó
+// æ“ä½œç»“æœï¼šè¿”å›äºŒå‰æ ‘ç»“ç‚¹pçš„å·¦å­©å­
 {
 	if (2 * p + 1 < maxSize && tag[2 * p + 1] == 1)
       return  2 * p + 1;
@@ -275,7 +275,7 @@ int SqBinaryTree<ElemType>::LeftChild(const int p) const
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::RightChild(const int p) const
-// ²Ù×÷½á¹û£º·µ»Ø¶ş²æÊ÷½áµãpµÄÓÒº¢×Ó
+// æ“ä½œç»“æœï¼šè¿”å›äºŒå‰æ ‘ç»“ç‚¹pçš„å³å­©å­
 {
 	if (2 * p + 2 < maxSize && tag[2 * p + 2] == 1)
       return  2 * p + 2;
@@ -285,7 +285,7 @@ int SqBinaryTree<ElemType>::RightChild(const int p) const
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::LeftSibling(const int p) const
-// ²Ù×÷½á¹û£º·µ»Ø¶ş²æÊ÷½áµãpµÄ×óĞÖµÜ 
+// æ“ä½œç»“æœï¼šè¿”å›äºŒå‰æ ‘ç»“ç‚¹pçš„å·¦å…„å¼Ÿ 
 {
 	if (p % 2 == 1 || p == 0 || tag[p - 1] == 0)
         return -1;
@@ -295,7 +295,7 @@ int SqBinaryTree<ElemType>::LeftSibling(const int p) const
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::RightSibling(const int p) const
-// ²Ù×÷½á¹û£º·µ»Ø¶ş²æÊ÷½áµãpµÄÓÒĞÖµÜ
+// æ“ä½œç»“æœï¼šè¿”å›äºŒå‰æ ‘ç»“ç‚¹pçš„å³å…„å¼Ÿ
 {
 	if (p % 2 == 0 || p + 1 >= maxSize || tag[p + 1] == 0)
         return -1;
@@ -305,28 +305,28 @@ int SqBinaryTree<ElemType>::RightSibling(const int p) const
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::Parent(const int p) const
-// ²Ù×÷½á¹û£º·µ»Ø¶ş²æÊ÷½áµãpµÄË«Ç×
+// æ“ä½œç»“æœï¼šè¿”å›äºŒå‰æ ‘ç»“ç‚¹pçš„åŒäº²
 {
 	return p > 0 ? (p - 1) / 2 : -1;
 }
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::Find(const ElemType &e) const
-// ²Ù×÷½á¹û£º²éÕÒ¶ş²æÊ÷ÖĞÔªËØe£¬²éÕÒ³É¹¦·µ»ØÆäÔÚÊı×éµÄÏÂ±ê£¬·ñÔò·µ»Ø-1. 
+// æ“ä½œç»“æœï¼šæŸ¥æ‰¾äºŒå‰æ ‘ä¸­å…ƒç´ eï¼ŒæŸ¥æ‰¾æˆåŠŸè¿”å›å…¶åœ¨æ•°ç»„çš„ä¸‹æ ‡ï¼Œå¦åˆ™è¿”å›-1. 
 {
-	LinkQueue<int> q;					// ¶¨Òå¸¨Öú¶ÓÁĞ
+	LinkQueue<int> q;					// å®šä¹‰è¾…åŠ©é˜Ÿåˆ—
 	int t = 0;							
 	
 	if (!IsNodeEmpty(t))
-        q.EnQueue(t);					// Èç¹û¸ù·Ç¿Õ,ÔòÈë¶Ó
-	while (!q.IsEmpty())	{			// q·Ç¿Õ,ËµÃ÷»¹ÓĞ½áµãÎ´·ÃÎÊ
+        q.EnQueue(t);					// å¦‚æœæ ¹éç©º,åˆ™å…¥é˜Ÿ
+	while (!q.IsEmpty())	{			// qéç©º,è¯´æ˜è¿˜æœ‰ç»“ç‚¹æœªè®¿é—®
 		q.DelQueue(t);     
 		if (elems[t] == e)
 			return t;
-		if (!IsNodeEmpty(LeftChild(t)))				// ×óº¢×Ó·Ç¿Õ
-			q.EnQueue(LeftChild(t));				// ×óº¢×ÓÈë¶Ó
-		if (!IsNodeEmpty(RightChild(t)))			// ÓÒº¢×Ó·Ç¿Õ
-			q.EnQueue(RightChild(t));			// ÓÒº¢×ÓÈë¶Ó
+		if (!IsNodeEmpty(LeftChild(t)))				// å·¦å­©å­éç©º
+			q.EnQueue(LeftChild(t));				// å·¦å­©å­å…¥é˜Ÿ
+		if (!IsNodeEmpty(RightChild(t)))			// å³å­©å­éç©º
+			q.EnQueue(RightChild(t));			// å³å­©å­å…¥é˜Ÿ
 	}
 	return -1;
 }
@@ -334,15 +334,15 @@ int SqBinaryTree<ElemType>::Find(const ElemType &e) const
 
 template <class ElemType>
 Status SqBinaryTree<ElemType>::InsertLeftChild(int p, const ElemType &e)
-// ²Ù×÷½á¹û£º²åÈëeÎªpµÄ×óº¢×Ó¡£Èç¹ûpÎª¿Õ¡¢»òÕßpµÄ×óº¢×Ó·Ç¿Õ¡¢»òÕß»òÕßpµÄ×óº¢×ÓÎ»ÖÃ²»ÔÚÊı×éÓĞĞ§·¶Î§£¬Ôò²Ù×÷×÷Ê§°Ü
+// æ“ä½œç»“æœï¼šæ’å…¥eä¸ºpçš„å·¦å­©å­ã€‚å¦‚æœpä¸ºç©ºã€æˆ–è€…pçš„å·¦å­©å­éç©ºã€æˆ–è€…æˆ–è€…pçš„å·¦å­©å­ä½ç½®ä¸åœ¨æ•°ç»„æœ‰æ•ˆèŒƒå›´ï¼Œåˆ™æ“ä½œä½œå¤±è´¥
 {
 	if (IsNodeEmpty(p))
 		return FAIL;
-	else 	{	// ²åÈë×óº¢×Ó    
-		if (2 * p + 1 < maxSize && 2 * p + 1 > 0 && tag[2 * p + 1] == 0)	{	// p×óº¢×ÓÎª¿Õ,ÇÒÎ»ÖÃºÏ·¨
-			elems[2 * p + 1] = e;				// ÉèÖÃ×óº¢×ÓÔªËØÖµ
-			tag[2 * p + 1] = 1;		            // ÉèÖÃ×óº¢×Ó±êÖ¾
-			return SUCCESS;						// ·µ»ØSUCCESS
+	else 	{	// æ’å…¥å·¦å­©å­    
+		if (2 * p + 1 < maxSize && 2 * p + 1 > 0 && tag[2 * p + 1] == 0)	{	// på·¦å­©å­ä¸ºç©º,ä¸”ä½ç½®åˆæ³•
+			elems[2 * p + 1] = e;				// è®¾ç½®å·¦å­©å­å…ƒç´ å€¼
+			tag[2 * p + 1] = 1;		            // è®¾ç½®å·¦å­©å­æ ‡å¿—
+			return SUCCESS;						// è¿”å›SUCCESS
 		}
 		else
 		    return FAIL;
@@ -351,15 +351,15 @@ Status SqBinaryTree<ElemType>::InsertLeftChild(int p, const ElemType &e)
 
 template <class ElemType>
 Status SqBinaryTree<ElemType>::InsertRightChild(int p, const ElemType &e)
-// ²Ù×÷½á¹û£º²åÈëeÎªpµÄÓÒº¢×Ó¡£Èç¹ûpÎª¿Õ¡¢»òÕßpµÄÓÒº¢×Ó·Ç¿Õ¡¢»òÕß»òÕßpµÄÓÒº¢×ÓÎ»ÖÃ²»ÔÚÊı×éÓĞĞ§·¶Î§£¬Ôò²Ù×÷×÷Ê§°Ü
+// æ“ä½œç»“æœï¼šæ’å…¥eä¸ºpçš„å³å­©å­ã€‚å¦‚æœpä¸ºç©ºã€æˆ–è€…pçš„å³å­©å­éç©ºã€æˆ–è€…æˆ–è€…pçš„å³å­©å­ä½ç½®ä¸åœ¨æ•°ç»„æœ‰æ•ˆèŒƒå›´ï¼Œåˆ™æ“ä½œä½œå¤±è´¥
 {
 	if (IsNodeEmpty(p))
 		return FAIL;
-	else	{	// ²åÈëÓÒº¢×Ó
-		if (2 * p + 2 < maxSize && 2 * p + 2 > 0 && tag[2 * p + 2] == 0)	{	// p×óº¢×ÓÎª¿Õ,ÇÒÎ»ÖÃºÏ·¨
-			elems[2 * p + 2] = e;				// ÉèÖÃ×óº¢×ÓÔªËØÖµ
-			tag[2 * p + 2] = 1;		            // ÉèÖÃ×óº¢×Ó±êÖ¾
-			return SUCCESS;						    // ·µ»ØSUCCESS
+	else	{	// æ’å…¥å³å­©å­
+		if (2 * p + 2 < maxSize && 2 * p + 2 > 0 && tag[2 * p + 2] == 0)	{	// på·¦å­©å­ä¸ºç©º,ä¸”ä½ç½®åˆæ³•
+			elems[2 * p + 2] = e;				// è®¾ç½®å·¦å­©å­å…ƒç´ å€¼
+			tag[2 * p + 2] = 1;		            // è®¾ç½®å·¦å­©å­æ ‡å¿—
+			return SUCCESS;						    // è¿”å›SUCCESS
 		}
 		else
             return FAIL;
@@ -368,7 +368,7 @@ Status SqBinaryTree<ElemType>::InsertRightChild(int p, const ElemType &e)
 
 template <class ElemType>
 Status SqBinaryTree<ElemType>::DeleteLeftChild(int p)
-// ²Ù×÷½á¹û£ºÈç¹ûp·Ç¿Õ£¬ÔòÉ¾³ıp×ó×ÓÊ÷£»·ñÔò²Ù×÷Ê§°Ü¡£ 
+// æ“ä½œç»“æœï¼šå¦‚æœpéç©ºï¼Œåˆ™åˆ é™¤på·¦å­æ ‘ï¼›å¦åˆ™æ“ä½œå¤±è´¥ã€‚ 
 {
 	if (IsNodeEmpty(p))
 		return FAIL;
@@ -380,7 +380,7 @@ Status SqBinaryTree<ElemType>::DeleteLeftChild(int p)
 
 template <class ElemType>
 Status SqBinaryTree<ElemType>::DeleteRightChild(int p)
-// ²Ù×÷½á¹û£ºÈç¹ûp·Ç¿Õ£¬ÔòÉ¾³ıpÓÒ×ÓÊ÷£»·ñÔò²Ù×÷Ê§°Ü¡£ 
+// æ“ä½œç»“æœï¼šå¦‚æœpéç©ºï¼Œåˆ™åˆ é™¤på³å­æ ‘ï¼›å¦åˆ™æ“ä½œå¤±è´¥ã€‚ 
 {
 	if (IsNodeEmpty(p))
 		return FAIL;
@@ -392,68 +392,68 @@ Status SqBinaryTree<ElemType>::DeleteRightChild(int p)
 
 template <class ElemType>
 void SqBinaryTree<ElemType>::Destroy(int r)
-// ²Ù×÷½á¹û£ºÉ¾³ıÒÔrÎª¸ùµÄ¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šåˆ é™¤ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘
 {
-	if(r >=0 && r < maxSize && !IsNodeEmpty(r))	{ // r·Ç¿Õ,ÊµÊ©É¾³ı
-		Destroy(LeftChild(r));		// É¾³ı×ó×ÓÊ÷
-		Destroy(RightChild(r));		// É¾³ıÓÒ×ÓÊ÷
-		tag[r] = 0;			// ½«rÖÃ¿Õ
+	if(r >=0 && r < maxSize && !IsNodeEmpty(r))	{ // réç©º,å®æ–½åˆ é™¤
+		Destroy(LeftChild(r));		// åˆ é™¤å·¦å­æ ‘
+		Destroy(RightChild(r));		// åˆ é™¤å³å­æ ‘
+		tag[r] = 0;			// å°†rç½®ç©º
 	}
 }
 
 template <class ElemType>
 SqBinaryTree<ElemType>::SqBinaryTree(const ElemType &e, int size)
-// ²Ù×÷½á¹û£º½¨Á¢ÒÔeÎª¸ùµÄ×î´ó½áµã¸öÊıÎªsizeµÄ¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šå»ºç«‹ä»¥eä¸ºæ ¹çš„æœ€å¤§ç»“ç‚¹ä¸ªæ•°ä¸ºsizeçš„äºŒå‰æ ‘
 {
-	maxSize = size;					// ×î´ó½áµã¸öÊı
-	elems = new ElemType[maxSize];	// ·ÖÅäÊı¾İÔªËØµÄ´æ´¢¿Õ¼ä
-	tag = new int[maxSize];	        // ·ÖÅä±ê¼ÇÊı×éµÄ´æ´¢¿Õ¼ä
-	for (int i = 1; i <maxSize; i++)// ½«ËùÓĞ½áµã±êÊ¶Îª¿Õ
+	maxSize = size;					// æœ€å¤§ç»“ç‚¹ä¸ªæ•°
+	elems = new ElemType[maxSize];	// åˆ†é…æ•°æ®å…ƒç´ çš„å­˜å‚¨ç©ºé—´
+	tag = new int[maxSize];	        // åˆ†é…æ ‡è®°æ•°ç»„çš„å­˜å‚¨ç©ºé—´
+	for (int i = 1; i <maxSize; i++)// å°†æ‰€æœ‰ç»“ç‚¹æ ‡è¯†ä¸ºç©º
 		tag[i] = 0;
-	tag[0] = 1;	                    // ÉèÖÃ¸ù±êÖ¾
-	elems[0] = e;			        // ÉèÖÃ¸ùµÄÊı¾İÔªËØÖµ
+	tag[0] = 1;	                    // è®¾ç½®æ ¹æ ‡å¿—
+	elems[0] = e;			        // è®¾ç½®æ ¹çš„æ•°æ®å…ƒç´ å€¼
 }
 
 
 template <class ElemType>
 SqBinaryTree<ElemType>::SqBinaryTree(const SqBinaryTree<ElemType> &t)
-// ²Ù×÷½á¹û£ºÓÉÒÑÖª¶ş²æÊ÷¹¹ÔìĞÂ¶ş²æÊ÷¡ª¡ª¸´ÖÆ¹¹Ôìº¯Êı
+// æ“ä½œç»“æœï¼šç”±å·²çŸ¥äºŒå‰æ ‘æ„é€ æ–°äºŒå‰æ ‘â€”â€”å¤åˆ¶æ„é€ å‡½æ•°
 {
-	maxSize = t.maxSize;			// ×î´ó½áµã¸öÊı
-	elems = new ElemType[maxSize];	// ·ÖÅäÊı¾İÔªËØµÄ´æ´¢¿Õ¼ä
-	tag = new int[maxSize];	        // ·ÖÅä±ê¼ÇÊı×éµÄ´æ´¢¿Õ¼ä
+	maxSize = t.maxSize;			// æœ€å¤§ç»“ç‚¹ä¸ªæ•°
+	elems = new ElemType[maxSize];	// åˆ†é…æ•°æ®å…ƒç´ çš„å­˜å‚¨ç©ºé—´
+	tag = new int[maxSize];	        // åˆ†é…æ ‡è®°æ•°ç»„çš„å­˜å‚¨ç©ºé—´
 	for (int i = 0; i <maxSize; i++)	{
-		elems[i] = t.elems[i];           // ¸´ÖÆ½áµãÔªËØ 
-		tag[i] = t.tag[i];             // ¸´ÖÆ½áµã±ê¼Ç
+		elems[i] = t.elems[i];           // å¤åˆ¶ç»“ç‚¹å…ƒç´  
+		tag[i] = t.tag[i];             // å¤åˆ¶ç»“ç‚¹æ ‡è®°
     }
 }
 
 template <class ElemType>
 SqBinaryTree<ElemType>::SqBinaryTree(ElemType es[], int ta[], int size)
-// ²Ù×÷½á¹û£ºÓÉÔªËØÊı×ées[]ºÍ±ê¼ÇÊı×éta[]¹¹Ôì×î´ó¿Õ¼äÎªsizeµÄ¶ş²æÊ÷, 
+// æ“ä½œç»“æœï¼šç”±å…ƒç´ æ•°ç»„es[]å’Œæ ‡è®°æ•°ç»„ta[]æ„é€ æœ€å¤§ç©ºé—´ä¸ºsizeçš„äºŒå‰æ ‘, 
 {
-	maxSize = size;					// ÉèÖÃ×î´ó¿Õ¼ä
-	elems = new ElemType[maxSize];	// ·ÖÅäÊı¾İÔªËØµÄ´æ´¢¿Õ¼ä
-	tag = new int[maxSize];	        // ·ÖÅä±ê¼ÇÊı×éµÄ´æ´¢¿Õ¼ä
+	maxSize = size;					// è®¾ç½®æœ€å¤§ç©ºé—´
+	elems = new ElemType[maxSize];	// åˆ†é…æ•°æ®å…ƒç´ çš„å­˜å‚¨ç©ºé—´
+	tag = new int[maxSize];	        // åˆ†é…æ ‡è®°æ•°ç»„çš„å­˜å‚¨ç©ºé—´
 	for (int i = 0; i <maxSize; i++)	{
-		elems[i] = es[i];           // ¸´ÖÆ½áµãÔªËØ 
-		tag[i] = ta[i];             // ¸´ÖÆ½áµã±ê¼Ç
+		elems[i] = es[i];           // å¤åˆ¶ç»“ç‚¹å…ƒç´  
+		tag[i] = ta[i];             // å¤åˆ¶ç»“ç‚¹æ ‡è®°
     }
 }
 
 template <class ElemType>
 SqBinaryTree<ElemType> &SqBinaryTree<ElemType>::operator=(const SqBinaryTree<ElemType> &t)
-// ²Ù×÷½á¹û£ºÓÉÒÑÖª¶ş²æÊ÷t¸´ÖÆµ½µ±Ç°¶ş²æÊ÷--¸³ÖµÔËËã·ûÖØÔØ
+// æ“ä½œç»“æœï¼šç”±å·²çŸ¥äºŒå‰æ ‘tå¤åˆ¶åˆ°å½“å‰äºŒå‰æ ‘--èµ‹å€¼è¿ç®—ç¬¦é‡è½½
 {
 	if (&t != this)	{
-		delete []elems;					// ÊÍ·Å´æ´¢¿Õ¼ä
-		maxSize = t.maxSize;		    // ÉèÖÃ×î´ó¿Õ¼ä
-	    elems = new ElemType[maxSize];	// ·ÖÅäÊı¾İÔªËØµÄ´æ´¢¿Õ¼ä
-        tag = new int[maxSize];	        // ·ÖÅä±ê¼ÇÊı×éµÄ´æ´¢¿Õ¼ä
+		delete []elems;					// é‡Šæ”¾å­˜å‚¨ç©ºé—´
+		maxSize = t.maxSize;		    // è®¾ç½®æœ€å¤§ç©ºé—´
+	    elems = new ElemType[maxSize];	// åˆ†é…æ•°æ®å…ƒç´ çš„å­˜å‚¨ç©ºé—´
+        tag = new int[maxSize];	        // åˆ†é…æ ‡è®°æ•°ç»„çš„å­˜å‚¨ç©ºé—´
 
 		for (int i = 0; i <maxSize; i++){
-		    elems[i] = t.elems[i];           // ¸´ÖÆ½áµãÔªËØ 
-		    tag[i] = t.tag[i];             // ¸´ÖÆ½áµã±ê¼Ç
+		    elems[i] = t.elems[i];           // å¤åˆ¶ç»“ç‚¹å…ƒç´  
+		    tag[i] = t.tag[i];             // å¤åˆ¶ç»“ç‚¹æ ‡è®°
         }
 	}
 	return *this;
@@ -461,61 +461,61 @@ SqBinaryTree<ElemType> &SqBinaryTree<ElemType>::operator=(const SqBinaryTree<Ele
 
 template <class ElemType>
 void DisplayBTWithTreeShape(SqBinaryTree<ElemType> &bt, int r, int level)
-//	²Ù×÷½á¹û£º°´Ê÷×´ĞÎÊ½ÏÔÊ¾¶ş²æÊ÷btÖĞÒÔrÎª¸ùµÄ×ÓÊ÷£¬levelÎª²ã´ÎÊı¡£
+//	æ“ä½œç»“æœï¼šæŒ‰æ ‘çŠ¶å½¢å¼æ˜¾ç¤ºäºŒå‰æ ‘btä¸­ä»¥rä¸ºæ ¹çš„å­æ ‘ï¼Œlevelä¸ºå±‚æ¬¡æ•°ã€‚
 {
-	if(!bt.IsNodeEmpty(r))	{	        //¿ÕÊ÷²»ÏÔÊ½£¬Ö»ÏÔÊ½·Ç¿ÕÊ÷
-		DisplayBTWithTreeShape<ElemType>(bt, bt.RightChild(r), level + 1);//ÏÔÊ¾ÓÒ×ÓÊ÷
-		cout << endl;					//ÏÔÊ¾ĞÂĞĞ	
+	if(!bt.IsNodeEmpty(r))	{	        //ç©ºæ ‘ä¸æ˜¾å¼ï¼Œåªæ˜¾å¼éç©ºæ ‘
+		DisplayBTWithTreeShape<ElemType>(bt, bt.RightChild(r), level + 1);//æ˜¾ç¤ºå³å­æ ‘
+		cout << endl;					//æ˜¾ç¤ºæ–°è¡Œ	
 		for(int i = 0; i < level - 1; i++)
-			cout << "  ";				//È·±£ÔÚµÚlevelÁĞÏÔÊ¾½áµã
+			cout << "  ";				//ç¡®ä¿åœ¨ç¬¬levelåˆ—æ˜¾ç¤ºç»“ç‚¹
 		ElemType e;
 		bt.GetElem(r, e);
-		cout << e;						//ÏÔÊ¾½áµã
-		DisplayBTWithTreeShape<ElemType>(bt, bt.LeftChild(r), level + 1);//ÏÔÊ¾×ó×ÓÊ÷
+		cout << e;						//æ˜¾ç¤ºç»“ç‚¹
+		DisplayBTWithTreeShape<ElemType>(bt, bt.LeftChild(r), level + 1);//æ˜¾ç¤ºå·¦å­æ ‘
 	}
 }
 
 template <class ElemType>
 void DisplayBTWithTreeShape(SqBinaryTree<ElemType> &bt)
-//	²Ù×÷½á¹û£ºÊ÷×´ĞÎÊ½ÏÔÊ¾¶ş²æÊ÷ 
+//	æ“ä½œç»“æœï¼šæ ‘çŠ¶å½¢å¼æ˜¾ç¤ºäºŒå‰æ ‘ 
 {
 	DisplayBTWithTreeShape<ElemType>(bt, 0, 1);	
-		// Ê÷×´ÏÔÊ¾¶ş²æÊ÷bt
+		// æ ‘çŠ¶æ˜¾ç¤ºäºŒå‰æ ‘bt
 	cout << endl;
 }
 
 template <class ElemType>
 void CreateBinaryTree(ElemType es[], int ta[], int r, ElemType pre[], ElemType in[], 
 	int preLeft, int preRight, int inLeft, int inRight)	
-// ²Ù×÷½á¹û£ºÒÑÖª¶ş²æÊ÷µÄÏÈĞòĞòÁĞpre[preLeft..preRight]ºÍÖĞĞòĞòÁĞin[inLeft..inRight]¹¹Ôì
-//	ÒÔrÎª¸ùµÄ¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šå·²çŸ¥äºŒå‰æ ‘çš„å…ˆåºåºåˆ—pre[preLeft..preRight]å’Œä¸­åºåºåˆ—in[inLeft..inRight]æ„é€ 
+//	ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘
 {
-	if (inLeft <= inRight)	{	// ¶ş²æÊ÷ÓĞ½áµã,·Ç¿Õ¶ş²æÊ÷
-		es[r] = pre[preLeft]; ta[r] = 1; // Éú³É¸ù½áµã
+	if (inLeft <= inRight)	{	// äºŒå‰æ ‘æœ‰ç»“ç‚¹,éç©ºäºŒå‰æ ‘
+		es[r] = pre[preLeft]; ta[r] = 1; // ç”Ÿæˆæ ¹ç»“ç‚¹
 		int mid = inLeft;
-		while (in[mid] != pre[preLeft]) // ²éÕÒpre[preLeft]ÔÚin[]ÖĞµÄÎ»ÖÃ,Ò²¾ÍÊÇÖĞĞòĞòÁĞÖĞ¸ùµÄÎ»ÖÃ
+		while (in[mid] != pre[preLeft]) // æŸ¥æ‰¾pre[preLeft]åœ¨in[]ä¸­çš„ä½ç½®,ä¹Ÿå°±æ˜¯ä¸­åºåºåˆ—ä¸­æ ¹çš„ä½ç½®
 			mid++;
 		CreateBinaryTree(es, ta, 2 * r + 1, pre, in, preLeft+1, preLeft + mid - inLeft, inLeft, mid - 1);
-                                        // Éú³É×ó×ÓÊ÷
+                                        // ç”Ÿæˆå·¦å­æ ‘
 		CreateBinaryTree(es, ta, 2 * r + 2, pre, in, preLeft + mid - inLeft + 1, preRight, mid + 1, 
-			inRight);					// Éú³ÉÓÒ×ÓÊ÷
+			inRight);					// ç”Ÿæˆå³å­æ ‘
 	}
 } 
 
 template <class ElemType>
 SqBinaryTree<ElemType> &CreateBinaryTree(ElemType pre[], ElemType in[], int n, int size)
-// ²Ù×÷½á¹û£ºÒÑÖªÏÈĞòºÍÖĞĞòĞòÁĞ¹¹Ôì¶ş²æÊ÷
+// æ“ä½œç»“æœï¼šå·²çŸ¥å…ˆåºå’Œä¸­åºåºåˆ—æ„é€ äºŒå‰æ ‘
 {
-	ElemType *es = new ElemType[size];	// ·ÖÅäÔªËØÊı×éµÄÁÙÊ±¿Õ¼ä
-    int *ta = new int[size];	        // ·ÖÅä±ê¼ÇÊı×éµÄÁÙÊ±¿Õ¼ä
-	int r = 0;							// ¶ş²æÊ÷µÄ¸ù
+	ElemType *es = new ElemType[size];	// åˆ†é…å…ƒç´ æ•°ç»„çš„ä¸´æ—¶ç©ºé—´
+    int *ta = new int[size];	        // åˆ†é…æ ‡è®°æ•°ç»„çš„ä¸´æ—¶ç©ºé—´
+	int r = 0;							// äºŒå‰æ ‘çš„æ ¹
 	for (int i = 0; i < size; i++)
 	    ta[i] = 0;
 	CreateBinaryTree<ElemType>(es, ta, r, pre, in, 0, n - 1, 0, n - 1);
-		// ÓÉÏÈĞòºÍÖĞĞòĞòÁĞ¹¹ÔìÒÔrÎª¸ùµÄ¶ş²æÊ÷ 
-	SqBinaryTree<ElemType> *bt = new SqBinaryTree<ElemType>(es, ta, size);	// Éú³É¶ş²æÊ÷
+		// ç”±å…ˆåºå’Œä¸­åºåºåˆ—æ„é€ ä»¥rä¸ºæ ¹çš„äºŒå‰æ ‘ 
+	SqBinaryTree<ElemType> *bt = new SqBinaryTree<ElemType>(es, ta, size);	// ç”ŸæˆäºŒå‰æ ‘
 	delete []es;
-    delete []ta;						// ÊÍ·ÅÁÙÊ±¿Õ¼ä
+    delete []ta;						// é‡Šæ”¾ä¸´æ—¶ç©ºé—´
 	return *bt;
 }
 
