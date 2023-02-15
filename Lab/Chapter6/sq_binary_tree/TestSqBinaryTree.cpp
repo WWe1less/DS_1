@@ -2,8 +2,8 @@
 
 int main(void)
 {
-	int p;
-	char c='a', e;
+	int p,q;
+	char c='a', e,f;
 
 	char pre[]={'A','B','D','E','G','H','C','F','I'};		// 先序序列
 	char in[]={'D','B','G','E','H','A','C','F','I'};		// 中序序列
@@ -27,6 +27,7 @@ int main(void)
         cout << endl << "7. 求二叉树的结点数.";
         cout << endl << "8. 求二叉树的高度.";
         cout << endl << "9. 显示二叉排序树.";
+		cout << endl << "a. 显示两者共同祖先.";
 		cout << endl << "0. 退出";
 		cout << endl << "选择功能(0~7):";
 		cin >> c;
@@ -79,6 +80,19 @@ int main(void)
 	         case '9':
 				cout << endl;
 				DisplayBTWithTreeShape(bt);
+				break;
+			case 'a':
+				bt.Ancester(p, q);
+				cout << endl << "输入要查找祖先的p和q的值:";
+			    cin >> e >>f;
+			    p = bt.Find(e);
+				q = bt.Find(f);
+			    if (p == -1 || q==-1)
+			    	cout << "结点不存在！" << endl;
+			    else {
+            		cout << endl << "共同祖先的值:";
+					DisplayBTWithTreeShape(bt,bt.Ancester(p,q),1);
+			    }
 				break;
 		}
 	}

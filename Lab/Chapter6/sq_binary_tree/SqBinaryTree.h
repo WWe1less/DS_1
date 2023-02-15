@@ -41,6 +41,7 @@ public:
 	int LeftSibling(const int p) const;					// 求二叉树中结点p的左兄弟 
 	int RightSibling(const int p) const;				// 求二叉树中结点p的右兄弟
 	int Parent(const int p) const;					    // 求二叉树中结点p的双亲
+	int Ancester(int p,int q) const;					// 求叉树中结点p和q的共同祖先
 	int Find(const ElemType &e) const;						// 查找二叉树中元素e 
 	Status InsertLeftChild(int p, const ElemType &e);	// 插入元素作为结点p左孩子
 	Status InsertRightChild(int p, const ElemType &e);  // 插入元素作为结点p右孩子
@@ -308,6 +309,19 @@ int SqBinaryTree<ElemType>::Parent(const int p) const
 // 操作结果：返回二叉树结点p的双亲
 {
 	return p > 0 ? (p - 1) / 2 : -1;
+}
+
+template <class ElemType>
+int SqBinaryTree<ElemType>::Ancester(int p, int q) const
+// 操作结果：返回二叉树结点p和的共同祖先
+{
+	if(p/2 > q/2){
+		return Ancester(p/2,q);
+	}
+	if(p/2 < q/2){
+		return Ancester(p,q/2);
+	}
+	return p/2;
 }
 
 template <class ElemType>
