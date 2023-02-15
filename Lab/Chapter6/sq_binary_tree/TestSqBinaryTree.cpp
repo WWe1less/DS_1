@@ -87,11 +87,14 @@ int main(void)
 			    cin >> e >>f;
 			    p = bt.Find(e);
 				q = bt.Find(f);
+//				cout << p << q;
 			    if (p == -1 || q==-1)
 			    	cout << "结点不存在！" << endl;
 			    else {
             		cout << endl << "共同祖先的值:";
-					DisplayBTWithTreeShape(bt,bt.Ancester(p,q),1);
+//					cout<<bt.Ancester(p, q);
+					bt.GetElem(bt.Ancester(p, q), e);
+					cout <<endl << e << endl;
 			    }
 				break;
 		}

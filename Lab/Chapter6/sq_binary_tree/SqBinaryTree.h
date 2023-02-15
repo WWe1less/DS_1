@@ -315,13 +315,18 @@ template <class ElemType>
 int SqBinaryTree<ElemType>::Ancester(int p, int q) const
 // 操作结果：返回二叉树结点p和的共同祖先
 {
-	if(p/2 > q/2){
-		return Ancester(p/2,q);
+	if(Parent(p) == Parent(q)){
+		return Parent(p);
 	}
-	if(p/2 < q/2){
-		return Ancester(p,q/2);
+	else{
+		if(p > q){
+			return Ancester(Parent(p),q);
+		}
+		if(p < q){
+			return Ancester(p,Parent(q));
+		}
 	}
-	return p/2;
+	return -1;
 }
 
 template <class ElemType>
