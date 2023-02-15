@@ -313,7 +313,7 @@ int SqBinaryTree<ElemType>::Parent(const int p) const
 
 template <class ElemType>
 int SqBinaryTree<ElemType>::Ancester(int p, int q) const
-// 操作结果：返回二叉树结点p和的共同祖先
+// 操作结果：返回二叉树结点p和q的共同祖先
 {
 	if(Parent(p) == Parent(q)){
 		return Parent(p);

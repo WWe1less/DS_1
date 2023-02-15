@@ -2,6 +2,7 @@
 #define __BINNARY_TREE_H__
 
 #include "LinkQueue.h"				// 链队列
+#include "LinkStack.h"
 #include "BinTreeNode.h"			// 二叉树结点类
 
 // 二叉树类
@@ -20,6 +21,8 @@ protected:
 		// 先序遍历以r为根的二叉树
 	void InOrder(BinTreeNode<ElemType>*r,void (*Visit)(const ElemType &)) const;
 		// 中序遍历以r为根的二叉树
+	void NoRecursionInOrder(BinTreeNode<ElemType>*r,void (*Visit)(const ElemType &)) const;
+		// 非递归中序遍历以r为根的二叉树
 	void PostOrder(BinTreeNode<ElemType>*r,
 void (*Visit)(const ElemType &)) const;	// 后序遍历以r为根的二叉树
     int Height(const BinTreeNode<ElemType> *r) const;	
@@ -41,6 +44,7 @@ public:
 	Status SetElem(BinTreeNode<ElemType> *p, const ElemType &e);
 		// 将结点p的值置为e
 	void InOrder(void (*Visit)(const ElemType &)) const;// 二叉树的中序遍历	
+	void NoRecursionInOrder(void (*Visit)(const ElemType &)) const;// 二叉树的中序遍历
 	void PreOrder(void (*Visit)(const ElemType &)) const;// 二叉树的先序遍历
 	void PostOrder(void (*Visit)(const ElemType &)) const;// 二叉树的后序遍历
 	void LevelOrder(void (*Visit)(const ElemType &)) const;	// 二叉树的层次遍历
@@ -176,6 +180,34 @@ void BinaryTree<ElemType>::InOrder(void (*Visit)(const ElemType &)) const
 {
 	InOrder(root, Visit);	
 }	
+
+template <class ElemType>
+void BinaryTree<ElemType>::NoRecursionInOrder(BinTreeNode<ElemType> *r, void (*Visit)(const ElemType &)) const
+// 操作结果：非递归中序遍历以r为根的二叉树
+{
+	LinkStack<BinTreeNode<ElemType> *> s;
+
+	while (r != NULL) 	{
+		s.Push(r);
+		r=r->leftChild;	// 首先遍历r的左子树
+	}
+	while(!s.IsEmpty()){
+		s.Pop(r);
+		(*Visit)(r->data);				// 再访问根结点r
+		r=r->rightChild;	// 最后遍历r的右子树
+		while(r!=NULL){
+			s.Push(r);
+			r=r->leftChild;
+		}
+	}
+}
+
+template <class ElemType>
+void BinaryTree<ElemType>::NoRecursionInOrder(void (*Visit)(const ElemType &)) const
+// 操作结果：非递归中序遍历二叉树
+{
+	NoRecursionInOrder(root, Visit);	
+}
 
 template <class ElemType>
 void BinaryTree<ElemType>::PostOrder(BinTreeNode<ElemType> *r, void (*Visit)(const ElemType &)) const
