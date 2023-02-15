@@ -1,55 +1,55 @@
-#include "BinaryTree.h"		// ¶ş²æÁ´±íÀà
+#include "BinaryTree.h"		// äºŒå‰é“¾è¡¨ç±»
 
 int main(void)
 {
 	BinTreeNode<char> *p;
-	char pre[]={'A','B','D','E','G','H','C','F','I'}; // ÏÈĞòĞòÁĞ
-	char in[]={'D','B','G','E','H','A','C','F','I'};  // ÖĞĞòĞòÁĞ
-	int n = 9;						                  // ½áµã¸öÊı
+	char pre[]={'A','B','D','E','G','H','C','F','I'}; // å…ˆåºåºåˆ—
+	char in[]={'D','B','G','E','H','A','C','F','I'};  // ä¸­åºåºåˆ—
+	int n = 9;						                  // ç»“ç‚¹ä¸ªæ•°
 	BinaryTree<char> bt;
     char c = 'x', e;
 	
 	
-	bt = CreateBinaryTree(pre, in, n);           // ¹¹Ôì¶ş²æÊ÷
+	bt = CreateBinaryTree(pre, in, n);           // æ„é€ äºŒå‰æ ‘
 		
-	cout << "ÓÉÏÈĞò£ºA,B,D,E,G,H,C,F,IºÍÖĞĞò£ºD,B,G,E,H,A,C,F,I¹¹ÔìµÄ¶ş²æÊ÷:" << endl;
+	cout << "ç”±å…ˆåºï¼šA,B,D,E,G,H,C,F,Iå’Œä¸­åºï¼šD,B,G,E,H,A,C,F,Iæ„é€ çš„äºŒå‰æ ‘:" << endl;
 	DisplayBTWithTreeShape<char>(bt);
 	cout << endl;
 
 	system("PAUSE");
 
     while (c != '0')	{
-        cout << endl << "1. ²åÈë×óº¢×Ó.";
-        cout << endl << "2. É¾³ıÓÒ×ÓÊ÷.";
-        cout << endl << "3. ²ã´Î±éÀú";
-        cout << endl << "4. ÏÈĞò±éÀú.";
-        cout << endl << "5. ÖĞĞò±éÀú.";
-        cout << endl << "6. ºóĞò±éÀú.";
-        cout << endl << "7. Çó¶ş²æÊ÷µÄ½áµãÊı.";
-        cout << endl << "8. Çó¶ş²æÊ÷µÄ¸ß¶È.";
-        cout << endl << "9. ÏÔÊ¾¶ş²æÅÅĞòÊ÷.";
-		cout << endl << "0. ÍË³ö";
-		cout << endl << "Ñ¡Ôñ¹¦ÄÜ(0~7):";
+        cout << endl << "1. æ’å…¥å·¦å­©å­.";
+        cout << endl << "2. åˆ é™¤å³å­æ ‘.";
+        cout << endl << "3. å±‚æ¬¡éå†";
+        cout << endl << "4. å…ˆåºéå†.";
+        cout << endl << "5. ä¸­åºéå†.";
+        cout << endl << "6. ååºéå†.";
+        cout << endl << "7. æ±‚äºŒå‰æ ‘çš„ç»“ç‚¹æ•°.";
+        cout << endl << "8. æ±‚äºŒå‰æ ‘çš„é«˜åº¦.";
+        cout << endl << "9. æ˜¾ç¤ºäºŒå‰æ’åºæ ‘.";
+		cout << endl << "0. é€€å‡º";
+		cout << endl << "é€‰æ‹©åŠŸèƒ½(0~7):";
 		cin >> c;
 		switch (c) 	{
 		    case '1':
-            	cout << endl << "ÊäÈë±»²åÈëÔªËØµÄÖµ:";
+            	cout << endl << "è¾“å…¥è¢«æ’å…¥å…ƒç´ çš„å€¼:";
 			    cin >> e;
 			    p = bt.Find(e);
 			    if (p == NULL)
-			    	cout << "¸Ã½áµã²»´æÔÚ£¡" << endl;
+			    	cout << "è¯¥ç»“ç‚¹ä¸å­˜åœ¨ï¼" << endl;
 			    else {
-            		cout << endl << "ÊäÈë²åÈëÔªËØµÄÖµ:";
+            		cout << endl << "è¾“å…¥æ’å…¥å…ƒç´ çš„å€¼:";
 			    	cin >> e;
-					bt.InsertLeftChild(p, e);	// ²åÈë×óº¢×Ó
+					bt.InsertLeftChild(p, e);	// æ’å…¥å·¦å­©å­
 			    }
 			    break;
            	case '2':
-            	cout << endl << "ÊäÈëÉ¾³ı×ÓÊ÷Ë«Ç×ÔªËØµÄÖµ:";
+            	cout << endl << "è¾“å…¥åˆ é™¤å­æ ‘åŒäº²å…ƒç´ çš„å€¼:";
 			    cin >> e;
 			    p = bt.Find(e);
 			    if (p == NULL)
-			    	cout << "¸Ã½áµã²»´æÔÚ£¡" << endl;
+			    	cout << "è¯¥ç»“ç‚¹ä¸å­˜åœ¨ï¼" << endl;
 			    else 
 					bt.DeleteRightChild(p);					
 			    break;
@@ -71,11 +71,11 @@ int main(void)
 				break;
 	         case '7':
 				cout << endl;
-				cout << "¶ş²æÊ÷µÄ½áµãÊıÎª£º" << bt.NodeCount() << endl;
+				cout << "äºŒå‰æ ‘çš„ç»“ç‚¹æ•°ä¸ºï¼š" << bt.NodeCount() << endl;
 				break;
 	         case '8':
 				cout << endl;
-				cout << "¶ş²æÊ÷µÄ¸ß¶ÈÎª£º" << bt.Height() << endl;
+				cout << "äºŒå‰æ ‘çš„é«˜åº¦ä¸ºï¼š" << bt.Height() << endl;
 				break;
 	         case '9':
 				cout << endl;
