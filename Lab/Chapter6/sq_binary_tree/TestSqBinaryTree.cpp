@@ -88,8 +88,8 @@ int main(void)
 			    p = bt.Find(e);
 				q = bt.Find(f);
 //				cout << p << q;
-			    if (p == -1 || q==-1)
-			    	cout << "结点不存在！" << endl;
+			    if (p == 0 || q==0)
+			    	cout << "结点不存在祖先！" << endl;
 			    else {
             		cout << endl << "共同祖先的值:";
 //					cout<<bt.Ancester(p, q);

@@ -29,7 +29,7 @@ int main(void)
         cout << endl << "8. 求二叉树的高度.";
         cout << endl << "9. 显示二叉排序树.";
 		cout << endl << "0. 退出";
-		cout << endl << "n. 非递归先序遍历";
+		cout << endl << "n. 非递归中序遍历";
 		cout << endl << "选择功能(0~7):";
 		cin >> c;
 		switch (c) 	{

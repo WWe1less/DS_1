@@ -283,12 +283,14 @@ bool operator !=(const String &s1, const String &s2)
 Status Reverse(String &s, int p, int n)
 // 逆序存储字符串s中从p位置开始长度为n的字符串
 {
-	if (p>=n) {
-		return SUCCESS;
+	if (p>=n||n>(s.GetLength()+1)||p<0) {
+		return RANGE_ERROR;
 		}
-	Swap(s[p],s[n]);
-	Reverse(s, p + 1, n - 1);
-  	return SUCCESS;
+	else{
+		Swap(s[p],s[n]);
+		Reverse(s, p + 1, n - 1);
+  		return SUCCESS;
+		}
 }
 
 #endif

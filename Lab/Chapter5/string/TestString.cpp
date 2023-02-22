@@ -105,10 +105,14 @@ int main(void)
 				Write(s1);
 				cout << endl << "输入逆序的起点位置和长度：";
 				cin >> p >> l;
-				Reverse(s1, p, l);
-				cout << endl << "逆序结果为：";
-				Write(s1);
-				cout << endl;
+				if(Reverse(s1, p, l)==SUCCESS){
+					cout << endl << "逆序结果为：";
+					Write(s1);
+					cout << endl;
+				}
+				else{
+					cout << endl << "逆序错误";
+				}
 				break;
 		}
 	}
