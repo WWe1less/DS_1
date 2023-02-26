@@ -1,132 +1,119 @@
-#include "String.h"			// ‰∏≤Á±ª
+#include "String.h"			// ¥Æ¿‡
 
 int main(void)
 {
 	String s1("It is a car.");
 	String s2;
+	String s;
+	
 	char c = '1';
 	int p,l;
 	
 	while (c != '0'){
-        cout << endl << "1. ÊµãËØïInsert()";
-        cout << endl << "2. ÊµãËØïDelete()";
-        cout << endl << "3. ÊµãËØïCopy()";
-        cout << endl << "4. ÊµãËØïÂÖ≥Á≥ªËøêÁÆóÁ¨¶==";
-        cout << endl << "5. ÊµãËØïSubString()";
-        cout << endl << "6. ÊµãËØï‰∏ãÊ†áËøêÁÆóÁ¨¶";
-        cout << endl << "7. ÊµãËØïËøûÊé•ËøêÁÆóÁ¨¶+";
-        cout << endl << "8. ËæìÂÖ•Â≠óÁ¨¶‰∏≤1";
-        cout << endl << "9. ËæìÂÖ•Â≠óÁ¨¶‰∏≤2";  
-		cout << endl << "r. ÊµãËØïReverse()";  
-		cout << endl << "d. Âà†Èô§ÂêéÁßª";
-		cout << endl << "0. ÈÄÄÂá∫";
-		cout << endl << "ÈÄâÊã©ÂäüËÉΩ(0~9):";
+        cout << endl << "1. ≤‚ ‘Insert()";
+        cout << endl << "2. ≤‚ ‘Delete()";
+        cout << endl << "3. ≤‚ ‘Copy()";
+        cout << endl << "4. ≤‚ ‘πÿœµ‘ÀÀ„∑˚==";
+        cout << endl << "5. ≤‚ ‘SubString()";
+        cout << endl << "6. ≤‚ ‘œ¬±Í‘ÀÀ„∑˚";
+        cout << endl << "7. ≤‚ ‘¡¨Ω”‘ÀÀ„∑˚+";
+        cout << endl << "8.  ‰»Î◊÷∑˚¥Æ1";
+        cout << endl << "9.  ‰»Î◊÷∑˚¥Æ2";        
+		cout << endl << "0. ÕÀ≥ˆ";
+		cout << endl << "d. …æ≥˝∫Û“∆";
+		cout << endl << "—°‘Òπ¶ƒ‹(0~9):";
 		cin >> c;
 		switch (c) 	{
 			case '1':
-				cout << "Â≠óÁ¨¶‰∏≤s1‰∏∫Ôºö";
+				cout << "◊÷∑˚¥Æs1Œ™£∫";
 				Write(s1);
-				cout << "Â≠óÁ¨¶‰∏≤s2‰∏∫Ôºö";
+				cout << "◊÷∑˚¥Æs2Œ™£∫";
 				Write(s2);
-				cout << endl << "ËæìÂÖ•ÊèíÂÖ•‰ΩçÁΩÆÔºö";
+				cout << endl << " ‰»Î≤Â»ÎŒª÷√£∫";
 				cin >> p;
 				Insert(s1, s2, p);
-				cout << endl << "ÊèíÂÖ•ÁªìÊûú‰∏∫Ôºö";
+				cout << endl << "≤Â»ÎΩ·π˚Œ™£∫";
 				Write(s1);
 				cout << endl;
 				break;
 	       case '2':
-				cout << "Â≠óÁ¨¶‰∏≤s1‰∏∫Ôºö";
+				cout << "◊÷∑˚¥Æs1Œ™£∫";
 				Write(s1);
-				cout << endl << "ËæìÂÖ•Âà†Èô§ÁöÑËµ∑ÁÇπ‰ΩçÁΩÆÂíåÈïøÂ∫¶Ôºö";
+				cout << endl << " ‰»Î…æ≥˝µƒ∆µ„Œª÷√∫Õ≥§∂»£∫";
 				cin >> p >> l;
 				Delete(s1, p, l);
-				cout << endl << "Âà†Èô§ÁªìÊûú‰∏∫Ôºö";
+				cout << endl << "…æ≥˝Ω·π˚Œ™£∫";
 				Write(s1);
 				cout << endl;
 				break;
 		   case '3':
-				cout << "Â≠óÁ¨¶‰∏≤s1‰∏∫Ôºö";
+				cout << "◊÷∑˚¥Æs1Œ™£∫";
 				Write(s1);
-				cout << "Â≠óÁ¨¶‰∏≤s2‰∏∫Ôºö";
+				cout << "◊÷∑˚¥Æs2Œ™£∫";
 				Write(s2);
 				Copy(s2 ,s1);
-				cout << endl << "Â§çÂà∂ÁªìÊûú‰∏∫Ôºö";
+				cout << endl << "∏¥÷∆Ω·π˚Œ™£∫";
 				Write(s2);
 				cout << endl;
 			    break;
            case '4':
-				cout << "Â≠óÁ¨¶‰∏≤s1‰∏∫Ôºö";
+				cout << "◊÷∑˚¥Æs1Œ™£∫";
 				Write(s1);
-				cout << "Â≠óÁ¨¶‰∏≤s2‰∏∫Ôºö";
+				cout << "◊÷∑˚¥Æs2Œ™£∫";
 				Write(s2);
 				if (s1 == s2) 
-       				cout << "s1Âíås2Áõ∏Á≠â„ÄÇ"<< endl;
+       				cout << "s1∫Õs2œ‡µ»°£"<< endl;
     			else 
-       				cout << "s1Âíås2‰∏çÁõ∏Á≠â„ÄÇ"<< endl;
+       				cout << "s1∫Õs2≤ªœ‡µ»°£"<< endl;
 			    break;
            case '5':
-				cout << "Â≠óÁ¨¶‰∏≤s1‰∏∫Ôºö";
+				cout << "◊÷∑˚¥Æs1Œ™£∫";
 				Write(s1);
-				cout << endl << "ËæìÂÖ•Â≠ê‰∏≤ÁöÑËµ∑ÁÇπ‰ΩçÁΩÆÂíåÈïøÂ∫¶Ôºö";
+				cout << endl << " ‰»Î◊”¥Æµƒ∆µ„Œª÷√∫Õ≥§∂»£∫";
 				cin >> p >> l;
 				s2 = SubString(s1, p, l);
-				cout << endl << "ÂèñÂ≠ê‰∏≤ÁªìÊûú‰∏∫Ôºö";
+				cout << endl << "»°◊”¥ÆΩ·π˚Œ™£∫";
 				Write(s2);
 				cout << endl;
 			    break;
           case '6':
-				cout << "Â≠óÁ¨¶‰∏≤s1‰∏∫Ôºö";
+				cout << "◊÷∑˚¥Æs1Œ™£∫";
 				Write(s1);
-				cout << endl << "ËæìÂÖ•Â≠óÁ¨¶‰∏ãÊ†áÔºö";
+				cout << endl << " ‰»Î◊÷∑˚œ¬±Í£∫";
 				cin >> p;
-				cout << endl << "ÊµãËØï‰∏ãÊ†áËøêÁÆóÁ¨¶ÁªìÊûú‰∏∫Ôºö" << endl;
+				cout << endl << "≤‚ ‘œ¬±Í‘ÀÀ„∑˚Ω·π˚Œ™£∫" << endl;
 				cout << s1[p] << endl;
 			    break;
            case '7':
-				cout << "Â≠óÁ¨¶‰∏≤s1‰∏∫Ôºö";
+				cout << "◊÷∑˚¥Æs1Œ™£∫";
 				Write(s1);
-				cout << "Â≠óÁ¨¶‰∏≤s2‰∏∫Ôºö";
+				cout << "◊÷∑˚¥Æs2Œ™£∫";
 				Write(s2);
 				s1 = s1 + s2;
-				cout << endl << "Â≠óÁ¨¶‰∏≤ËøûÊé•ÁªìÊûú‰∏∫Ôºö";
+				cout << endl << "◊÷∑˚¥Æ¡¨Ω”Ω·π˚Œ™£∫";
 				Write(s1);
 				cout << endl;
 				break;
           case '8':
-				cout << endl << "ËæìÂÖ•Â≠óÁ¨¶‰∏≤1Ôºö";
+				cout << endl << " ‰»Î◊÷∑˚¥Æ1£∫";
 				Read(s1);
 			    break;
            case '9':
-				cout << endl << "ËæìÂÖ•Â≠óÁ¨¶‰∏≤2Ôºö";
+				cout << endl << " ‰»Î◊÷∑˚¥Æ2£∫";
 				Read(s2);
 				break;
-			case 'r':
-				cout << "Â≠óÁ¨¶‰∏≤s1‰∏∫Ôºö";
-				Write(s1);
-				cout << endl << "ËæìÂÖ•ÈÄÜÂ∫èÁöÑËµ∑ÁÇπ‰ΩçÁΩÆÂíåÈïøÂ∫¶Ôºö";
-				cin >> p >> l;
-				if(Reverse(s1, p, l)==SUCCESS){
-					cout << endl << "ÈÄÜÂ∫èÁªìÊûú‰∏∫Ôºö";
-					Write(s1);
-					cout << endl;
-				}
-				else{
-					cout << endl << "ÈÄÜÂ∫èÈîôËØØ";
-				}
-				break;
 			case 'd':
-							cout << "Â≠óÁ¨¶‰∏≤s1‰∏∫Ôºö";
-							Write(s1);
-							cout << endl << "ËæìÂÖ•Âà†Èô§ÁöÑËµ∑ÁÇπ‰ΩçÁΩÆÂíåÈïøÂ∫¶Ôºö";
-							cin >> p >> l;
-							deleteSubstring(s1, p, l);
-							cout << endl << "Âà†Èô§ÂêéÁßªÁªìÊûú‰∏∫Ôºö";
-							Write(s1);
-							cout << endl;
-							break;
+				cout << "◊÷∑˚¥ÆsŒ™£∫";
+				Read(s);
+				cout << endl << " ‰»Î…æ≥˝µƒ∆µ„Œª÷√∫Õ≥§∂»£∫";
+				cin >> p >> l;
+				deleteSubstring(s, p, l);
+				cout << endl << "…æ≥˝∫Û“∆Ω·π˚Œ™£∫";
+				Write(s);
+				cout << endl;
+				break;
 		}
 	}
-	system("PAUSE");        // Ë∞ÉÁî®Â∫ìÂáΩÊï∞system()
-	return 0;               // ËøîÂõûÂÄº0, ËøîÂõûÊìç‰ΩúÁ≥ªÁªü
+	system("PAUSE");        // µ˜”√ø‚∫Ø ˝system()
+	return 0;               // ∑µªÿ÷µ0, ∑µªÿ≤Ÿ◊˜œµÕ≥
 }
