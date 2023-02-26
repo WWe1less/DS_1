@@ -54,6 +54,7 @@ bool operator !=(const String &s1, const String &s2);
 
 Status Reverse(String &s, int p, int n);
 	// 逆序存储字符串s中从p位置开始长度为n的字符串
+void deleteSubstring(String &s, int m, int t);
 
 // 串类及相关操作的实现部分
 String::String()
@@ -177,7 +178,7 @@ Status Insert(String &s1, const String &s2, int p)
 {
 	const char *cs1 = s1.CStr();		    // 取第一个串
 	const char *cs2 = s2.CStr();		    // 取第二个串
-	if (p >=0 && p < strlen(cs1)) {
+	if (p >=0 && p <= strlen(cs1)) {
  	    int len = strlen(cs1) + strlen(cs2);
         char *cs = new char[len + 1];       // 申请临时空间
 	    strncpy(cs, cs1, p);			    // 复制第一个串前部分的串值
@@ -293,5 +294,36 @@ Status Reverse(String &s, int p, int n)
 		}
 }
 
-#endif
+void deleteSubstring(String &s, int m, int t) {
+	const char *cs = s.CStr();
+	int ss = strlen(cs);
+	Insert(s,SubString(s,m,t),ss) ;
+	Delete(s,m,t);
+	
+	
+//	const char *cs = s.CStr();        // 取原串值
+//	int ss = strlen(cs);       // 求串长度
+//	char *news = new char[ss + 1]; // 申请临时空间
+//	strncpy(news, cs, ss);     // 复制原串值到新串
+//	news[ss] = '\0';           // 串值以'\0'结束
+//	if (m >= ss || t >= ss - m) {
+//		return;
+//	}
+//
+//	// 将第m+t+1个字符移动到第m个字符的位置，依次类推
+//	for (int i = m + t; i < ss; i++) {
+//		news[i - t] = news[i];
+//	}
+//
+//	// 将删除的子串后面的字符复制到字符串的最后
+//	for (int i = ss - t; i < ss; i++) {
+//		news[i] = news[i + t];
+//	}
+//
+//	// 更新原字符串
+//	s = String(news);
+//	delete[] news;
 
+}
+
+#endif
